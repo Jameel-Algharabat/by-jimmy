@@ -38,7 +38,11 @@ export function Hero() {
         id="top"
         className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-night pb-8 pt-28 md:pb-12 md:pt-32"
       >
-        <div className="hero-grid pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+          <div className="hero-atmosphere absolute inset-0" />
+          <div className="hero-wash hero-wash-a" />
+          <div className="hero-wash hero-wash-b" />
+        </div>
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-line" aria-hidden="true" />
 
         <div className="shell relative z-10">
