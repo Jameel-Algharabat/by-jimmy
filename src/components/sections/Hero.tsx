@@ -38,7 +38,7 @@ export function Hero() {
     <>
       <section
         id="top"
-        className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-night pb-8 pt-28 md:pb-12 md:pt-32"
+        className="relative flex flex-col overflow-hidden bg-night pb-8 pt-24 md:pb-12 lg:min-h-svh lg:justify-end lg:pt-32"
       >
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
           <div
