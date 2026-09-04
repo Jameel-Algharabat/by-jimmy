@@ -15,7 +15,7 @@ export const copy = {
     },
     hero: {
       kicker: "Digital product & web agency",
-      title: "BY PIXEL",
+      title: "By pixel",
       line: "Websites and digital experiences\nbuilt to scale your business.",
       lead: "We design and engineer high-performance websites and digital products. Clean code, bespoke design, and seamless execution.",
       primary: "Start a project",
@@ -168,7 +168,7 @@ export const copy = {
     },
     why: {
       index: "05",
-      label: "Why BY PIXEL",
+      label: "Why Pixel",
       title: "Precision Design.\nEngineering Excellence.",
       items: [
         {
@@ -239,7 +239,7 @@ export const copy = {
     },
     hero: {
       kicker: "وكالة رقمية وتطوير منتجات",
-      title: "BY PIXEL",
+      title: "By pixel",
       line: "مواقع وتجارب رقمية\nتُبنى لتوسيع أعمالك.",
       lead: "نصمّم ونهندس مواقع ومنتجات رقمية عالية الأداء. شيفرة نظيفة، تصميم مخصّص، وتنفيذ سلس.",
       primary: "ابدأ مشروعاً",
@@ -391,7 +391,7 @@ export const copy = {
     },
     why: {
       index: "05",
-      label: "لماذا BY PIXEL",
+      label: "لماذا Pixel",
       title: "تصميم دقيق.\nتميّز هندسي.",
       items: [
         {
