@@ -9,6 +9,7 @@ export function About() {
       <p
         aria-hidden="true"
         className="pointer-events-none absolute -end-[6vw] top-6 font-display text-[32vw] font-extrabold leading-none tracking-[-0.08em] text-bone/[0.035] md:top-0"
+        dir="ltr"
       >
         {t.about.name}
       </p>
@@ -20,14 +21,14 @@ export function About() {
               <p className="type-index text-ember">
                 {t.about.index} — {t.about.label}
               </p>
-              <p className="type-meta mt-10 text-fog">{t.about.name}</p>
+              <p className="type-meta mt-10 text-fog" dir="ltr">{t.about.name}</p>
               <p className="mt-3 max-w-[18ch] text-bone/70">{t.about.aside}</p>
             </Reveal>
           </div>
 
           <div className="lg:col-span-8">
             <ClipReveal delay={0.08}>
-              <h2 className="type-h2 max-w-[18ch]">{t.about.title}</h2>
+              <h2 className="type-h2 max-w-[24ch]">{t.about.title}</h2>
             </ClipReveal>
 
             <div className="mt-14 max-w-[640px] space-y-6 text-bone/80 md:mt-20">

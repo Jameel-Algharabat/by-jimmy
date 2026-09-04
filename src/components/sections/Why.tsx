@@ -13,7 +13,7 @@ export function Why() {
           </p>
         </Reveal>
         <ClipReveal delay={0.06}>
-          <h2 className="type-display mt-5 max-w-[12ch] whitespace-pre-line">{t.why.title}</h2>
+          <h2 className="type-display mt-5 max-w-[18ch] whitespace-pre-line">{t.why.title}</h2>
         </ClipReveal>
 
         <div className="mt-16 md:mt-24">
@@ -23,8 +23,8 @@ export function Why() {
                 <p className="type-index text-fog transition-colors duration-500 group-hover:text-ember md:col-span-2">
                   {item.n}
                 </p>
-                <h3 className="type-h3 md:col-span-4">{item.title}</h3>
-                <p className="max-w-[40ch] text-fog md:col-span-6">{item.body}</p>
+                <h3 className="type-h3 md:col-span-5">{item.title}</h3>
+                <p className="max-w-[40ch] text-fog md:col-span-5">{item.body}</p>
               </article>
             </Reveal>
           ))}

@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { copy, type Copy, type Lang } from "../content/copy";
+import { site } from "../content/site";
 
 type LanguageContextValue = {
   lang: Lang;
@@ -20,13 +21,14 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 function applyDocumentLang(lang: Lang) {
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.title = site.title;
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("by-jimmy-lang");
+    const stored = window.localStorage.getItem("by-pixel-lang");
     if (stored === "en" || stored === "ar") {
       setLangState(stored);
       applyDocumentLang(stored);
@@ -37,7 +39,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLang = useCallback((next: Lang) => {
     setLangState(next);
-    window.localStorage.setItem("by-jimmy-lang", next);
+    window.localStorage.setItem("by-pixel-lang", next);
     applyDocumentLang(next);
   }, []);
 

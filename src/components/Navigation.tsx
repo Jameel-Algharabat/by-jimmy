@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "../context/LanguageProvider";
+import { site } from "../content/site";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const NAV_IDS = ["work", "services", "about", "contact"] as const;
@@ -80,7 +81,7 @@ export function Navigation() {
       >
         <div className="shell flex h-[72px] items-center justify-between lg:h-20">
           <Link to="/" className="type-logo text-bone" dir="ltr" onClick={() => setOpen(false)}>
-            BY JIMMY
+            {site.name}
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
@@ -151,11 +152,11 @@ export function Navigation() {
                 ))}
               </nav>
               <div className="flex items-center justify-between gap-6">
-                <a href="mailto:hello@byjimmy.com" className="type-nav text-fog">
-                  hello@byjimmy.com
+                <a href={`mailto:${site.email}`} className="type-nav text-fog">
+                  {site.email}
                 </a>
                 <p className="type-meta text-fog" dir="ltr">
-                  BY JIMMY
+                  {site.name}
                 </p>
               </div>
             </div>

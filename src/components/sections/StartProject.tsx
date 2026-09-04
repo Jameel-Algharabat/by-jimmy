@@ -1,17 +1,18 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { useLanguage } from "../../context/LanguageProvider";
 import type { ProjectType } from "../../content/copy";
+import { BookingModal } from "../BookingModal";
 import { Button } from "../Button";
 import { ClipReveal, Reveal } from "../Reveal";
 
 type FormState = {
   name: string;
   email: string;
-  type: ProjectType | "";
+  types: ProjectType[];
   message: string;
 };
 
-const empty: FormState = { name: "", email: "", type: "", message: "" };
+const empty: FormState = { name: "", email: "", types: [], message: "" };
 
 function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -20,16 +21,28 @@ function isEmail(value: string) {
 export function StartProject() {
   const { t } = useLanguage();
   const [form, setForm] = useState<FormState>(empty);
-  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<"name" | "email" | "type" | "message", string>>>(
+    {},
+  );
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [booking, setBooking] = useState(false);
 
   function validate(next: FormState) {
-    const nextErrors: Partial<Record<keyof FormState, string>> = {};
+    const nextErrors: Partial<Record<"name" | "email" | "type" | "message", string>> = {};
     if (!next.name.trim()) nextErrors.name = t.contact.errors.name;
     if (!isEmail(next.email.trim())) nextErrors.email = t.contact.errors.email;
-    if (!next.type) nextErrors.type = t.contact.errors.type;
+    if (!next.types.length) nextErrors.type = t.contact.errors.type;
     if (!next.message.trim()) nextErrors.message = t.contact.errors.message;
     return nextErrors;
+  }
+
+  function toggleType(id: ProjectType) {
+    setForm((current) => ({
+      ...current,
+      types: current.types.includes(id)
+        ? current.types.filter((item) => item !== id)
+        : [...current.types, id],
+    }));
   }
 
   function onSubmit(event: FormEvent) {
@@ -87,76 +100,85 @@ export function StartProject() {
               </div>
             </div>
           ) : (
-            <form onSubmit={onSubmit} noValidate className="grid grid-cols-1 gap-12 md:grid-cols-12">
-              <div className="space-y-8 md:col-span-6">
-                <Field label={t.contact.name} htmlFor="project-name" error={errors.name}>
-                  <input
-                    id="project-name"
-                    name="name"
-                    autoComplete="name"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="field-input"
-                  />
-                </Field>
-                <Field label={t.contact.email} htmlFor="project-email" error={errors.email}>
-                  <input
-                    id="project-email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="field-input"
-                  />
-                </Field>
+            <>
+              <div className="mb-12 flex flex-col items-start gap-4 border-b border-line pb-10 md:mb-14 md:flex-row md:items-center md:justify-between">
+                <Button onClick={() => setBooking(true)}>{t.contact.book}</Button>
+                <p className="type-meta text-fog">{t.contact.bookNote}</p>
               </div>
 
-              <div className="space-y-8 md:col-span-6">
-                <fieldset>
-                  <legend className="type-meta text-fog">{t.contact.type}</legend>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {types.map((item) => {
-                      const selected = form.type === item.id;
-                      return (
-                        <button
-                          key={item.id}
-                          type="button"
-                          onClick={() => setForm({ ...form, type: item.id })}
-                          className={`type-btn border px-4 py-3 transition-colors duration-300 ${
-                            selected
-                              ? "border-bone bg-bone text-night"
-                              : "border-line text-fog hover:border-bone/40 hover:text-bone"
-                          }`}
-                          aria-pressed={selected}
-                        >
-                          {item.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {errors.type ? <p className="mt-3 text-sm text-ember">{errors.type}</p> : null}
-                </fieldset>
+              <form onSubmit={onSubmit} noValidate className="grid grid-cols-1 gap-12 md:grid-cols-12">
+                <div className="space-y-8 md:col-span-6">
+                  <Field label={t.contact.name} htmlFor="project-name" error={errors.name}>
+                    <input
+                      id="project-name"
+                      name="name"
+                      autoComplete="name"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      className="field-input"
+                    />
+                  </Field>
+                  <Field label={t.contact.email} htmlFor="project-email" error={errors.email}>
+                    <input
+                      id="project-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      className="field-input"
+                    />
+                  </Field>
+                </div>
 
-                <Field label={t.contact.message} htmlFor="project-message" error={errors.message}>
-                  <textarea
-                    id="project-message"
-                    name="message"
-                    rows={5}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="field-input min-h-[140px] resize-y"
-                  />
-                </Field>
+                <div className="space-y-8 md:col-span-6">
+                  <fieldset>
+                    <legend className="type-meta text-fog">{t.contact.type}</legend>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {types.map((item) => {
+                        const selected = form.types.includes(item.id);
+                        return (
+                          <button
+                            key={item.id}
+                            type="button"
+                            onClick={() => toggleType(item.id)}
+                            className={`type-btn border px-4 py-3 transition-colors duration-300 ${
+                              selected
+                                ? "border-bone bg-bone text-night"
+                                : "border-line text-fog hover:border-bone/40 hover:text-bone"
+                            }`}
+                            aria-pressed={selected}
+                          >
+                            {item.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {errors.type ? <p className="mt-3 text-sm text-ember">{errors.type}</p> : null}
+                  </fieldset>
 
-                <Button type="submit" disabled={status === "sending"}>
-                  {status === "sending" ? t.contact.sending : t.contact.submit}
-                </Button>
-              </div>
-            </form>
+                  <Field label={t.contact.message} htmlFor="project-message" error={errors.message}>
+                    <textarea
+                      id="project-message"
+                      name="message"
+                      rows={5}
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      className="field-input min-h-[140px] resize-y"
+                    />
+                  </Field>
+
+                  <Button type="submit" disabled={status === "sending"}>
+                    {status === "sending" ? t.contact.sending : t.contact.submit}
+                  </Button>
+                </div>
+              </form>
+            </>
           )}
         </Reveal>
       </div>
+
+      <BookingModal open={booking} onClose={() => setBooking(false)} />
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageProvider";
+import { site } from "../content/site";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Footer() {
@@ -18,7 +19,7 @@ export function Footer() {
       <div className="shell py-12 md:py-16">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <Link to="/" className="type-hero text-[14vw] leading-none text-bone md:text-[6vw]" dir="ltr">
-            BY JIMMY
+            {site.name}
           </Link>
           <p className="type-lead max-w-[24ch] text-fog">{t.footer.line}</p>
         </div>
@@ -32,7 +33,7 @@ export function Footer() {
             ))}
           </nav>
           <div className="flex flex-wrap items-center gap-6">
-            <a href="mailto:hello@byjimmy.com" className="type-nav link-line text-fog hover:text-bone">
+            <a href={`mailto:${site.email}`} className="type-nav link-line text-fog hover:text-bone">
               {t.footer.email}
             </a>
             <LanguageSwitcher />

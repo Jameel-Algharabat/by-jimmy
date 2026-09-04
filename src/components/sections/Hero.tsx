@@ -65,7 +65,7 @@ export function Hero() {
 
           <motion.h1
             className="type-hero mt-7 text-bone md:mt-10"
-            aria-label="BY JIMMY"
+            aria-label="BY PIXEL"
             dir="ltr"
             style={reduce ? undefined : { x, y }}
           >
@@ -73,13 +73,13 @@ export function Hero() {
               <Letters text="BY" delay={0.12} />
             </span>
             <span className="block whitespace-nowrap">
-              <Letters text="JIMMY" delay={0.28} />
+              <Letters text="PIXEL" delay={0.28} />
             </span>
           </motion.h1>
 
           <div className="mt-10 grid grid-cols-1 items-end gap-10 border-t border-line pt-8 md:mt-14 md:grid-cols-12 md:pt-10">
             <div className="md:col-span-7">
-              <p className="type-h3 max-w-[16ch] overflow-hidden whitespace-pre-line text-bone">
+              <p className="type-h3 max-w-[22ch] overflow-hidden whitespace-pre-line text-bone">
                 <motion.span
                   className="block"
                   initial={reduce ? false : { y: "110%" }}
@@ -90,7 +90,7 @@ export function Hero() {
                 </motion.span>
               </p>
               <motion.p
-                className="type-lead mt-6 max-w-[36ch] text-fog"
+                className="type-lead mt-6 max-w-[42ch] text-fog"
                 initial={reduce ? false : { opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}

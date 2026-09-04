@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import type { Copy } from "../content/copy";
+import { site } from "../content/site";
 import { useLanguage } from "../context/LanguageProvider";
 import { Button } from "../components/Button";
 import { ClipReveal, Reveal } from "../components/Reveal";
@@ -12,9 +13,9 @@ export function GharabatCaseStudy() {
   const sections = t.work.gharabatSections;
 
   useEffect(() => {
-    document.title = "Gharabat.site — BY JIMMY";
+    document.title = `Gharabat.site — ${site.name}`;
     return () => {
-      document.title = "BY JIMMY — Web Designer & Web Developer";
+      document.title = site.title;
     };
   }, [lang]);
 
