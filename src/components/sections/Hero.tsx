@@ -19,6 +19,8 @@ export function Hero() {
   const sy = useSpring(my, { stiffness: 80, damping: 22, mass: 0.4 });
   const x = useTransform(sx, [-0.5, 0.5], [-28, 28]);
   const y = useTransform(sy, [-0.5, 0.5], [-16, 16]);
+  const spotX = useTransform(sx, (v) => (v + 0.5) * window.innerWidth);
+  const spotY = useTransform(sy, (v) => (v + 0.5) * window.innerHeight);
 
   useEffect(() => {
     if (reduce || !window.matchMedia("(pointer: fine)").matches) return;
@@ -38,7 +40,22 @@ export function Hero() {
         id="top"
         className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-night pb-8 pt-28 md:pb-12 md:pt-32"
       >
-        <div className="hero-grid pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+          <div
+            className={`hero-grid absolute -inset-[72px] ${reduce ? "" : "hero-grid-drift"}`}
+          />
+          {reduce ? null : (
+            <>
+              <div className="hero-wash" />
+              <div className="hero-rule-h" />
+              <div className="hero-rule-v" />
+              <motion.div
+                className="hero-spot hidden lg:block"
+                style={{ x: spotX, y: spotY }}
+              />
+            </>
+          )}
+        </div>
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-line" aria-hidden="true" />
 
         <div className="shell relative z-10">

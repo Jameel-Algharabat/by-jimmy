@@ -270,10 +270,125 @@
 
   .hero-grid {
     background-image:
-      linear-gradient(to right, rgb(237 232 223 / 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(237 232 223 / 0.04) 1px, transparent 1px);
+      linear-gradient(to right, rgb(237 232 223 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(237 232 223 / 0.045) 1px, transparent 1px);
     background-size: 72px 72px;
     mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 18%, transparent 78%);
+  }
+
+  .hero-grid-drift {
+    animation: hero-grid-drift 56s linear infinite;
+  }
+
+  @keyframes hero-grid-drift {
+    to {
+      transform: translate3d(-72px, -72px, 0);
+    }
+  }
+
+  .hero-wash {
+    position: absolute;
+    top: 4%;
+    inset-inline-end: -12%;
+    width: min(58vw, 620px);
+    height: min(58vw, 620px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(201 174 138 / 0.1) 0%, transparent 70%);
+    animation: hero-wash 24s ease-in-out infinite;
+  }
+
+  @keyframes hero-wash {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 0.85;
+    }
+    50% {
+      transform: translate3d(-12%, 14%, 0);
+      opacity: 1;
+    }
+  }
+
+  .hero-rule-h {
+    position: absolute;
+    inset-inline: 6%;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgb(201 174 138 / 0.42),
+      transparent
+    );
+    animation: hero-rule-h 22s ease-in-out infinite;
+  }
+
+  @keyframes hero-rule-h {
+    0%,
+    100% {
+      transform: translate3d(0, 16vh, 0);
+      opacity: 0.12;
+    }
+    50% {
+      transform: translate3d(0, 74vh, 0);
+      opacity: 0.55;
+    }
+  }
+
+  .hero-rule-v {
+    position: absolute;
+    top: 10%;
+    bottom: 12%;
+    width: 1px;
+    inset-inline-start: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(201 174 138 / 0.4),
+      transparent
+    );
+    animation: hero-rule-v 28s ease-in-out infinite;
+  }
+
+  @keyframes hero-rule-v {
+    0%,
+    100% {
+      transform: translate3d(16vw, 0, 0);
+      opacity: 0.14;
+    }
+    50% {
+      transform: translate3d(78vw, 0, 0);
+      opacity: 0.5;
+    }
+  }
+
+  html[dir="rtl"] .hero-rule-v {
+    animation-name: hero-rule-v-rtl;
+  }
+
+  @keyframes hero-rule-v-rtl {
+    0%,
+    100% {
+      transform: translate3d(-16vw, 0, 0);
+      opacity: 0.14;
+    }
+    50% {
+      transform: translate3d(-78vw, 0, 0);
+      opacity: 0.5;
+    }
+  }
+
+  .hero-spot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: min(42vw, 420px);
+    height: min(42vw, 420px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(237 232 223 / 0.06) 0%, transparent 68%);
+    margin-left: -50%;
+    margin-top: -50%;
+    will-change: transform;
   }
 
   .link-line {
@@ -326,6 +441,13 @@
   }
 
   .marquee-track {
+    animation: none;
+  }
+
+  .hero-grid-drift,
+  .hero-wash,
+  .hero-rule-h,
+  .hero-rule-v {
     animation: none;
   }
 }
