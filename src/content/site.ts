@@ -1,8 +1,8 @@
 export const site = {
   name: "Pixel",
-  title: "Pixel | Custom Web Design & Development Agency",
+  title: "Pixel | Digital Agency for Intelligent Products",
   description:
-    "High-performance web design, custom development, and landing pages for growing businesses by Pixel.",
+    "Pixel designs and engineers high-performance websites and digital products. Strategy, craft, and modern AI-powered workflows — for ambitious companies.",
   url: "https://bypixel.com",
   email: "hello@bypixel.com",
   ogImage: "/og.png",
