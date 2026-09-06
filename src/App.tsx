@@ -6,7 +6,6 @@ import { ScrollManager } from "./components/ScrollManager";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { useLanguage } from "./context/LanguageProvider";
 import { HomePage } from "./pages/HomePage";
-import { GharabatCaseStudy } from "./pages/GharabatCaseStudy";
 
 function SiteLayout() {
   const { t } = useLanguage();
@@ -36,7 +35,6 @@ export default function App() {
       <Routes>
         <Route element={<SiteLayout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/work/gharabat" element={<GharabatCaseStudy />} />
         </Route>
       </Routes>
     </BrowserRouter>

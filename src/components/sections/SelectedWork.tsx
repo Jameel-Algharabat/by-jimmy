@@ -1,19 +1,18 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { useRef, type MouseEvent } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import type { Copy } from "../../content/copy";
 import { useLanguage } from "../../context/LanguageProvider";
 import { Button } from "../Button";
 import { ClipReveal, Reveal } from "../Reveal";
 
-type WorkItem = Copy["work"]["items"][number];
-
 export function SelectedWork() {
   const { t } = useLanguage();
+  const featured = t.work.featured;
+  const quote = t.work.testimonial;
 
   return (
     <section id="work" className="bg-night pb-8 pt-24 md:pt-36">
-      <div className="shell mb-16 md:mb-28">
+      <div className="shell mb-14 md:mb-20">
         <Reveal>
           <p className="type-index text-ember">
             {t.work.index} — {t.work.label}
@@ -23,161 +22,214 @@ export function SelectedWork() {
         </Reveal>
       </div>
 
-      <div className="flex flex-col gap-20 md:gap-28">
-        {t.work.items.map((item, i) => (
-          <ProjectChapter key={item.id} item={item} index={String(i + 1).padStart(2, "0")} copy={t.work} />
-        ))}
-      </div>
+      <article>
+        <DeviceShowcase featured={featured} visit={t.work.visit} />
+
+        <div className="shell mt-14 grid grid-cols-1 gap-10 pb-4 md:mt-16 md:grid-cols-12 md:gap-12">
+          <div className="md:col-span-8">
+            <ClipReveal>
+              <p className="type-index text-ember">{featured.category}</p>
+            </ClipReveal>
+            <ClipReveal delay={0.06}>
+              <h3 className="type-h2 mt-4 max-w-[22ch] text-bone">{featured.header}</h3>
+            </ClipReveal>
+            <Reveal delay={0.08}>
+              <p className="type-lead mt-5 max-w-[46ch] text-fog">{featured.subheading}</p>
+              <p className="mt-6 max-w-[58ch] text-pretty text-bone/80">
+                <EmphasizeBrand text={featured.story} brand={featured.name} />
+              </p>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <ul className="mt-8 flex flex-wrap gap-2">
+                {featured.badges.map((badge) => (
+                  <li
+                    key={badge}
+                    className="type-meta rounded-full border border-line bg-ash/80 px-4 py-2 text-fog"
+                  >
+                    {badge}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-10">
+                <Button href={featured.website}>
+                  {t.work.visit} — {featured.websiteLabel}
+                </Button>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </article>
+
+      <FounderReference quote={quote} />
     </section>
   );
 }
 
-function ProjectChapter({
-  item,
-  index,
-  copy,
-}: {
-  item: WorkItem;
-  index: string;
-  copy: Copy["work"];
-}) {
-  const isGharabat = item.id === "gharabat";
-  const caseStudy = "caseStudy" in item ? item.caseStudy : undefined;
+function EmphasizeBrand({ text, brand }: { text: string; brand: string }) {
+  const index = text.indexOf(brand);
+  if (index < 0) return text;
 
   return (
-    <article className="relative">
-      <div className="shell">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
-          <div className="lg:col-span-8">
-            <ClipReveal>
-              <p className="type-index text-fog">
-                {index} / {item.category}
-              </p>
-            </ClipReveal>
-            <ClipReveal delay={0.08}>
-              <h3 className="type-display mt-3 text-bone">{item.title}</h3>
-            </ClipReveal>
-          </div>
-          <div className="lg:col-span-4 lg:text-end">
-            <p className="type-meta text-ember">{item.role}</p>
-            <p className="type-meta mt-2 text-fog">{item.contributionMeta}</p>
-          </div>
-        </div>
-      </div>
-
-      <ProjectFrame
-        src={item.image}
-        alt={item.title}
-        href={isGharabat && caseStudy ? caseStudy : item.website}
-        internal={Boolean(isGharabat && caseStudy)}
-        cta={isGharabat ? copy.viewCase : copy.visit}
-      />
-
-      <div className="shell mt-8 grid grid-cols-1 gap-8 pb-4 md:grid-cols-12 md:mt-10">
-        <p className="type-lead max-w-[46ch] text-fog md:col-span-7">{item.summary}</p>
-        <div className="md:col-span-5 md:justify-self-end">
-          {"intro" in item && item.intro ? (
-            <p className="mb-6 max-w-[40ch] text-bone/80">{item.intro}</p>
-          ) : null}
-          {"contribution" in item && item.contribution
-            ? item.contribution.map((p) => (
-                <p key={p} className="mb-4 max-w-[40ch] text-fog">
-                  {p}
-                </p>
-              ))
-            : null}
-          {"referenceNote" in item && item.referenceNote ? (
-            <p className="type-meta mb-6 text-fog/70">{item.referenceNote}</p>
-          ) : null}
-          <div className="mt-2 flex flex-wrap items-center gap-6">
-            {isGharabat && caseStudy ? <Button href={caseStudy}>{copy.viewCase}</Button> : null}
-            <Button href={item.website} variant="line">
-              {copy.visit} — {item.websiteLabel}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </article>
+    <>
+      {text.slice(0, index)}
+      <strong className="font-medium text-bone">{brand}</strong>
+      {text.slice(index + brand.length)}
+    </>
   );
 }
 
-function ProjectFrame({
-  src,
-  alt,
-  href,
-  internal,
-  cta,
+function DeviceShowcase({
+  featured,
+  visit,
 }: {
-  src: string;
-  alt: string;
-  href: string;
-  internal: boolean;
-  cta: string;
+  featured: Copy["work"]["featured"];
+  visit: string;
 }) {
   const reduce = useReducedMotion();
-  const img = useRef<HTMLImageElement>(null);
-
-  function onMove(event: MouseEvent<HTMLElement>) {
-    if (reduce || !img.current) return;
-    if (!window.matchMedia("(pointer: fine)").matches) return;
-    const rect = event.currentTarget.getBoundingClientRect();
-    const px = (event.clientX - rect.left) / rect.width - 0.5;
-    const py = (event.clientY - rect.top) / rect.height - 0.5;
-    img.current.style.transform = `scale(1.08) translate(${px * 18}px, ${py * 12}px)`;
-  }
-
-  function onLeave() {
-    if (!img.current) return;
-    img.current.style.transform = "scale(1) translate(0, 0)";
-  }
-
-  const visual = (
-    <>
-      <img
-        ref={img}
-        src={src}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        className="h-[48vh] w-full object-cover object-top transition-transform duration-700 ease-out will-change-transform md:h-[72vh]"
-      />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/65 via-transparent to-night/20" />
-      <div className="pointer-events-none absolute inset-0 flex items-end p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:p-10">
-        <span className="type-btn text-bone">{cta} →</span>
-      </div>
-    </>
-  );
-
-  const frameClass = "group relative mt-7 block overflow-hidden md:mt-10";
-  const frameMotion = {
-    initial: reduce ? false : { clipPath: "inset(14% 10% 14% 10%)" },
-    whileInView: { clipPath: "inset(0% 0% 0% 0%)" },
-    viewport: { once: true, amount: 0.28 },
-    transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-  } as const;
-
-  if (internal) {
-    return (
-      <motion.div className={frameClass} data-cursor {...frameMotion} onMouseMove={onMove} onMouseLeave={onLeave}>
-        <Link to={href} className="block">
-          {visual}
-        </Link>
-      </motion.div>
-    );
-  }
 
   return (
-    <motion.a
+    <div className="shell">
+      <motion.a
+        href={featured.website}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cursor
+        aria-label={featured.videoAlt}
+        className="group mx-auto block max-w-4xl"
+        initial={reduce ? false : { opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="rounded-2xl bg-gradient-to-br from-bone/30 via-line to-ember/50 p-px shadow-2xl shadow-black/50 transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.012]">
+          <div className="overflow-hidden rounded-[15px] bg-void ring-1 ring-bone/5">
+            <div className="flex items-center gap-3 border-b border-white/5 px-4 py-2.5">
+              <span className="flex gap-1.5" aria-hidden="true">
+                <span className="size-2 rounded-full bg-[#3A3733]" />
+                <span className="size-2 rounded-full bg-[#3A3733]" />
+                <span className="size-2 rounded-full bg-ember/70" />
+              </span>
+              <span className="min-w-0 flex-1 truncate rounded-full bg-ash px-3 py-1 text-center type-meta text-fog">
+                {featured.websiteLabel}
+              </span>
+              <span className="hidden type-meta text-fog/60 sm:inline">{visit} →</span>
+            </div>
+            <div className="relative aspect-video overflow-hidden bg-ash">
+              <video
+                className="h-full w-full object-cover"
+                poster={featured.poster}
+                autoPlay={!reduce}
+                muted
+                loop
+                playsInline
+                preload={reduce ? "none" : "metadata"}
+                aria-hidden="true"
+              >
+                <source src={featured.video} type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </motion.a>
+    </div>
+  );
+}
+
+function FounderReference({ quote }: { quote: Copy["work"]["testimonial"] }) {
+  return (
+    <div className="mt-20 border-t border-line md:mt-28">
+      <div className="shell py-16 md:py-24">
+        <Reveal>
+          <article className="mx-auto max-w-3xl rounded-2xl border border-bone/10 bg-neutral-900/50 p-7 shadow-2xl shadow-black/30 backdrop-blur-md md:p-10">
+            <blockquote>
+              <p className="type-h3 text-pretty text-bone">“{quote.quote}”</p>
+            </blockquote>
+
+            <div className="mt-8 flex items-center gap-4 border-t border-white/5 pt-7">
+              <FounderPhoto src={quote.photo} name={quote.name} initials={quote.initials} />
+              <div>
+                <p className="font-display text-lg font-semibold tracking-tight text-bone">{quote.name}</p>
+                <p className="type-meta mt-1 text-fog">{quote.role}</p>
+              </div>
+            </div>
+
+            <div className="mt-7">
+              <p className="type-meta text-ember">{quote.contact}</p>
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                <ContactAction href={quote.linkedIn} label={quote.linkedInLabel} icon="linkedin" />
+                <ContactAction href={`mailto:${quote.email}`} label={quote.emailLabel} icon="email" />
+              </div>
+            </div>
+          </article>
+        </Reveal>
+      </div>
+    </div>
+  );
+}
+
+function FounderPhoto({ src, name, initials }: { src?: string; name: string; initials: string }) {
+  const [failed, setFailed] = useState(false);
+  const showImage = Boolean(src) && !failed;
+
+  return (
+    <div className="rounded-full bg-gradient-to-br from-ember to-bone/40 p-[2px]">
+      <div className="size-16 overflow-hidden rounded-full bg-night md:size-[4.5rem]">
+        {showImage ? (
+          <img
+            src={src}
+            alt={name}
+            width={72}
+            height={72}
+            className="size-full object-cover object-center"
+            onError={() => setFailed(true)}
+          />
+        ) : (
+          <div className="flex size-full items-center justify-center type-meta text-bone" aria-hidden="true">
+            {initials}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ContactAction({
+  href,
+  label,
+  icon,
+}: {
+  href: string;
+  label: string;
+  icon: "linkedin" | "email";
+}) {
+  const external = href.startsWith("http");
+
+  return (
+    <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={frameClass}
-      data-cursor
-      {...frameMotion}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="group inline-flex flex-1 items-center justify-center gap-2.5 rounded-xl border border-bone/10 bg-night/70 px-5 py-3.5 text-bone transition-all duration-300 hover:border-ember/70 hover:bg-ember/10 hover:shadow-[0_0_24px_-6px_rgba(201,174,138,0.55)]"
     >
-      {visual}
-    </motion.a>
+      {icon === "linkedin" ? <LinkedInIcon /> : <MailIcon />}
+      <span className="type-btn">{label}</span>
+    </a>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m4 7 8 6 8-6" />
+    </svg>
   );
 }
