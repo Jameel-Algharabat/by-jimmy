@@ -14,10 +14,10 @@ export const copy = {
       close: "Close",
     },
     hero: {
-      kicker: "Digital agency for ambitious companies",
-      title: "By pixel",
-      line: "The web, designed\nfor what comes next.",
-      lead: "We design and engineer digital products with studio-level craft and the working methods of a modern technology company. Strategy first. Then interfaces, systems, and code that hold up.",
+      kicker: "Digital agency for higher standards",
+      title: "ALTURA",
+      line: "Digital experiences,\nraised.",
+      lead: "ALTURA designs and engineers websites and digital experiences that raise how a business is seen, used, and trusted. Strategy, design, and engineering — held to a higher standard.",
       primary: "Start a project",
       secondary: "See the work",
       roles: ["Strategy", "Design", "Engineering", "Intelligence"],
@@ -65,7 +65,7 @@ export const copy = {
     services: {
       index: "02",
       label: "Services",
-      title: "What we make possible.",
+      title: "What we raise.",
       items: [
         {
           n: "01",
@@ -92,17 +92,17 @@ export const copy = {
     about: {
       index: "03",
       label: "About",
-      name: "Pixel",
-      aside: "Digital agency · Craft + intelligence",
-      title: "Pixel is a digital agency built around judgment, craft, and intelligent execution.",
-      p1: "We think in strategy, interface, and code at the same time. Design never leaves the room when engineering starts. Modern AI sits inside the workflow — research, exploration, production — so the studio moves with more range, not less taste.",
+      name: "ALTURA",
+      aside: "Digital agency · Elevation through craft",
+      title: "ALTURA exists to raise how a business is experienced online.",
+      p1: "We combine strategy, design, engineering, and human creativity. Modern technology — including AI — sits inside the workflow: research, exploration, production. The point is not a louder site. It is a higher standard of presence.",
       p2: "The collaboration is direct. You speak with the people making the product. Decisions stay close. The work is made to represent a business — local or international — and to help people hire you or buy from you.",
-      p3: "We are a lean studio. There is no account layer. If the work is ours to make, we make it. Then we stay with it.",
+      p3: "We are a lean studio. There is no account layer. If the work is ours to make, we make it. Then we stay with it — testing, refining, raising the experience as the business grows.",
     },
     process: {
       index: "04",
       label: "Process",
-      title: "Work that keeps moving.",
+      title: "Work that keeps rising.",
       steps: [
         {
           n: "01",
@@ -122,14 +122,14 @@ export const copy = {
         {
           n: "04",
           title: "Evolve",
-          body: "Launch is a beginning. We test, refine, and keep the product alive as the business changes.",
+          body: "Launch is a beginning. We test, refine, and keep raising the product as the business changes.",
         },
       ],
     },
     why: {
       index: "05",
-      label: "Why Pixel",
-      title: "Senior minds.\nModern methods.",
+      label: "Why ALTURA",
+      title: "Higher standards.\nClearer execution.",
       items: [
         {
           n: "01",
@@ -144,16 +144,16 @@ export const copy = {
         {
           n: "03",
           title: "Built to perform.",
-          body: "The site has a job: represent the company, earn trust, and convert. We design for that — then keep refining.",
+          body: "The site has a job: represent the company, earn trust, and convert. We design for that — then keep raising it.",
         },
       ],
     },
     contact: {
       index: "06",
       label: "Contact",
-      title: "If the work is\nserious, start here.",
+      title: "Ready to rise.\nStart here.",
       lead: "Tell us what the business does, whether a site exists, and any timing that matters. We read every brief.",
-      book: "Start a conversation",
+      book: "Work with ALTURA",
       bookNote: "Or send a brief below.",
       bookModalTitle: "A conversation",
       bookModalLead: "Thirty minutes. The business, the product, and whether we should work together.",
@@ -182,8 +182,8 @@ export const copy = {
       },
     },
     footer: {
-      email: "hello@bypixel.com",
-      line: "A digital agency for intelligent products.",
+      email: "hello@altura.com",
+      line: "Digital experiences, raised.",
     },
   },
   ar: {
@@ -198,10 +198,10 @@ export const copy = {
       close: "إغلاق",
     },
     hero: {
-      kicker: "وكالة رقمية للشركات الطموحة",
-      title: "By pixel",
-      line: "الويب، مصمَّم\nلما يأتي بعد.",
-      lead: "نصمّم ونهندس منتجات رقمية بحسّ استوديو وأساليب شركة تقنية معاصرة. الاستراتيجية أولاً. ثم الواجهات والأنظمة والشيفرة التي تصمد.",
+      kicker: "وكالة رقمية بمعايير أعلى",
+      title: "ALTURA",
+      line: "تجارب رقمية،\nمرفوعة.",
+      lead: "ALTURA تصمّم وتهندس مواقع وتجارب رقمية ترفع طريقة رؤية العمل واستخدامه والثقة به. استراتيجية وتصميم وهندسة — بمعيار أعلى.",
       primary: "ابدأ مشروعاً",
       secondary: "شاهد العمل",
       roles: ["استراتيجية", "تصميم", "هندسة", "ذكاء"],
@@ -244,7 +244,7 @@ export const copy = {
     services: {
       index: "02",
       label: "خدمات",
-      title: "ما نجعله ممكناً.",
+      title: "ما نرفعه.",
       items: [
         {
           n: "01",
@@ -271,17 +271,17 @@ export const copy = {
     about: {
       index: "03",
       label: "نبذة",
-      name: "Pixel",
-      aside: "وكالة رقمية · حرفية + ذكاء",
-      title: "Pixel وكالة رقمية مبنية على الذائقة والحرفية والتنفيذ الذكي.",
-      p1: "نفكّر في الاستراتيجية والواجهة والشيفرة في الوقت نفسه. التصميم لا يغادر الغرفة حين تبدأ الهندسة. والذكاء الاصطناعي الحديث جزء من طريقة العمل — بحثاً واستكشافاً وإنتاجاً — كي يتحرّك الاستوديو بنطاق أوسع، لا بذوق أقل.",
+      name: "ALTURA",
+      aside: "وكالة رقمية · ارتقاء عبر الحرفية",
+      title: "ALTURA وُجدت لترتقي بطريقة معايشة العمل على الإنترنت.",
+      p1: "نجمع الاستراتيجية والتصميم والهندسة والإبداع البشري. التقنية الحديثة — بما فيها الذكاء الاصطناعي — داخل سير العمل: بحثاً واستكشافاً وإنتاجاً. الغاية ليست موقعاً أعلى صوتاً. بل معيار حضور أعلى.",
       p2: "التعاون مباشر. تتحدث مع من يصنع المنتج. القرارات تبقى قريبة. العمل يُصنع ليمثّل عملاً — محلياً أو دولياً — وليساعد الناس على توظيفك أو الشراء منك.",
-      p3: "نحن استوديو رشيق. لا طبقة حسابات. إذا كان العمل لنا أن نصنعه، نصنعه. ثم نبقى معه.",
+      p3: "نحن استوديو رشيق. لا طبقة حسابات. إذا كان العمل لنا أن نصنعه، نصنعه. ثم نبقى معه — نختبر ونُحسّن ونرفع التجربة مع نمو العمل.",
     },
     process: {
       index: "04",
       label: "العملية",
-      title: "عمل يواصل الحركة.",
+      title: "عمل يواصل الارتفاع.",
       steps: [
         {
           n: "01",
@@ -301,14 +301,14 @@ export const copy = {
         {
           n: "04",
           title: "نطوّر",
-          body: "الإطلاق بداية. نختبر ونُحسّن ونُبقي المنتج حيّاً مع تغيّر العمل.",
+          body: "الإطلاق بداية. نختبر ونُحسّن ونواصل رفع المنتج مع تغيّر العمل.",
         },
       ],
     },
     why: {
       index: "05",
-      label: "لماذا Pixel",
-      title: "عقول خبيرة.\nأساليب معاصرة.",
+      label: "لماذا ALTURA",
+      title: "معايير أعلى.\nتنفيذ أوضح.",
       items: [
         {
           n: "01",
@@ -323,16 +323,16 @@ export const copy = {
         {
           n: "03",
           title: "مبني ليعمل.",
-          body: "للموقع مهمة: أن يمثّل الشركة، ويكسب الثقة، ويحوّل. نصمّم لذلك — ثم نواصل التحسين.",
+          body: "للموقع مهمة: أن يمثّل الشركة، ويكسب الثقة، ويحوّل. نصمّم لذلك — ثم نواصل رفعه.",
         },
       ],
     },
     contact: {
       index: "06",
       label: "تواصل",
-      title: "إن كان العمل\nجاداً، ابدأ من هنا.",
+      title: "إن كان ينبغي أن يرتقي،\nابدأ هنا.",
       lead: "أخبرنا ماذا يفعل العمل، وهل يوجد موقع، وأي توقيت يهم. نقرأ كل موجز.",
-      book: "ابدأ حواراً",
+      book: "اعمل مع ALTURA",
       bookNote: "أو أرسل موجزاً أدناه.",
       bookModalTitle: "حوار عمل",
       bookModalLead: "ثلاثون دقيقة. العمل، والمنتج، وما إذا كان ينبغي أن نعمل معاً.",
@@ -361,8 +361,8 @@ export const copy = {
       },
     },
     footer: {
-      email: "hello@bypixel.com",
-      line: "وكالة رقمية للمنتجات الذكية.",
+      email: "hello@altura.com",
+      line: "تجارب رقمية، مرفوعة.",
     },
   },
 } as const;

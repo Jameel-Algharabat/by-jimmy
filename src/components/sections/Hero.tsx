@@ -65,15 +65,12 @@ export function Hero() {
 
           <motion.h1
             className="type-hero mt-7 text-bone md:mt-10"
-            aria-label="By pixel"
+            aria-label={t.hero.title}
             dir="ltr"
             style={reduce ? undefined : { x, y }}
           >
             <span className="block whitespace-nowrap">
-              <Letters text="By" delay={0.12} />
-            </span>
-            <span className="block whitespace-nowrap">
-              <Letters text="pixel" delay={0.28} />
+              <Letters text={t.hero.title} delay={0.12} />
             </span>
           </motion.h1>
 

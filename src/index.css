@@ -98,7 +98,7 @@
     font-family: var(--font-display);
     font-size: 13px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     line-height: 1;
     text-transform: uppercase;
     direction: ltr;
@@ -156,9 +156,9 @@
 
   .type-hero {
     font-family: var(--font-display);
-    font-size: clamp(46px, 11vw, 162px);
+    font-size: clamp(40px, 9.6vw, 148px);
     font-weight: 800;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.06em;
     line-height: 0.8;
     text-transform: uppercase;
     direction: ltr;

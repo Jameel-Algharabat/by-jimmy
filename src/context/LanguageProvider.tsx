@@ -28,7 +28,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("by-pixel-lang");
+    const stored = window.localStorage.getItem("altura-lang") ?? window.localStorage.getItem("by-pixel-lang");
     if (stored === "en" || stored === "ar") {
       setLangState(stored);
       applyDocumentLang(stored);
@@ -39,7 +39,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLang = useCallback((next: Lang) => {
     setLangState(next);
-    window.localStorage.setItem("by-pixel-lang", next);
+    window.localStorage.setItem("altura-lang", next);
     applyDocumentLang(next);
   }, []);
 

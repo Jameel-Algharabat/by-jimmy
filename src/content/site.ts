@@ -1,10 +1,10 @@
 export const site = {
-  name: "Pixel",
-  title: "Pixel | Digital Agency for Intelligent Products",
+  name: "ALTURA",
+  title: "ALTURA | Digital Experiences, Raised",
   description:
-    "Pixel designs and engineers high-performance websites and digital products. Strategy, craft, and modern AI-powered workflows — for ambitious companies.",
-  url: "https://bypixel.com",
-  email: "hello@bypixel.com",
+    "ALTURA designs and engineers high-performance websites and digital experiences. Strategy, craft, and intelligent workflows — for companies that expect a higher standard.",
+  url: "https://altura.com",
+  email: "hello@altura.com",
   ogImage: "/og.png",
   calendlyUrl: import.meta.env.VITE_CALENDLY_URL ?? "",
 } as const;
