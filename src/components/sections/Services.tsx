@@ -4,7 +4,7 @@ import { useLanguage } from "../../context/LanguageProvider";
 import { Reveal } from "../Reveal";
 
 export function Services() {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
   const reduce = useReducedMotion();
   const [open, setOpen] = useState(0);
   const active = t.services.items[open];
@@ -42,7 +42,7 @@ export function Services() {
                 <AnimatePresence initial={false}>
                   {on ? (
                     <motion.div
-                      key={`${lang}-${item.n}`}
+                      key={item.n}
                       initial={reduce ? false : { height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={reduce ? undefined : { height: 0, opacity: 0 }}
@@ -88,7 +88,7 @@ export function Services() {
             <div className="sticky top-32">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={`${lang}-${active.n}`}
+                  key={active.n}
                   initial={reduce ? false : { opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={reduce ? undefined : { opacity: 0, y: -16 }}

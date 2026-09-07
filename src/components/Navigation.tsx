@@ -3,7 +3,6 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "../context/LanguageProvider";
 import { site } from "../content/site";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const NAV_IDS = ["work", "services", "about", "contact"] as const;
 
@@ -98,18 +97,15 @@ export function Navigation() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-6">
-            <LanguageSwitcher />
-            <button
-              type="button"
-              className="type-nav text-bone lg:hidden"
-              aria-expanded={open}
-              aria-controls="site-menu"
-              onClick={() => setOpen((v) => !v)}
-            >
-              {open ? t.nav.close : t.nav.menu}
-            </button>
-          </div>
+          <button
+            type="button"
+            className="type-nav text-bone lg:hidden"
+            aria-expanded={open}
+            aria-controls="site-menu"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? t.nav.close : t.nav.menu}
+          </button>
         </div>
       </header>
 

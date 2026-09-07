@@ -3,7 +3,6 @@
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Syne", "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-arabic: "IBM Plex Sans Arabic", "Manrope", ui-sans-serif, sans-serif;
 
   --color-night: #090807;
   --color-void: #050504;
@@ -21,14 +20,6 @@
     background: var(--color-night);
   }
 
-  html[lang="ar"] {
-    font-family: var(--font-arabic);
-  }
-
-  html[lang="ar"] .font-display {
-    font-family: var(--font-arabic);
-  }
-
   body {
     margin: 0;
     min-width: 320px;
@@ -41,10 +32,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-  }
-
-  html[lang="ar"] body {
-    font-family: var(--font-arabic);
   }
 
   ::selection {
@@ -113,15 +100,6 @@
     text-transform: uppercase;
   }
 
-  .type-lang {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    line-height: 1;
-    text-transform: uppercase;
-  }
-
   .type-index {
     font-family: var(--font-sans);
     font-size: 11px;
@@ -138,20 +116,6 @@
     letter-spacing: 0.12em;
     line-height: 1.4;
     text-transform: uppercase;
-  }
-
-  html[lang="ar"] .type-nav,
-  html[lang="ar"] .type-meta,
-  html[lang="ar"] .type-index,
-  html[lang="ar"] .type-logo {
-    letter-spacing: 0.08em;
-    text-transform: none;
-  }
-
-  html[lang="ar"] .type-logo {
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-family: var(--font-display);
   }
 
   .type-hero {
@@ -201,11 +165,6 @@
     letter-spacing: 0.16em;
     line-height: 1;
     text-transform: uppercase;
-  }
-
-  html[lang="ar"] .type-btn {
-    letter-spacing: 0.06em;
-    text-transform: none;
   }
 
   .shell {
@@ -262,10 +221,6 @@
     background: var(--color-ember);
     z-index: 70;
     transform-origin: 0 50%;
-  }
-
-  html[dir="rtl"] .progress-bar {
-    transform-origin: 100% 50%;
   }
 
   .hero-grid {
@@ -362,22 +317,6 @@
     }
   }
 
-  html[dir="rtl"] .hero-rule-v {
-    animation-name: hero-rule-v-rtl;
-  }
-
-  @keyframes hero-rule-v-rtl {
-    0%,
-    100% {
-      transform: translate3d(-16vw, 0, 0);
-      opacity: 0.14;
-    }
-    50% {
-      transform: translate3d(-78vw, 0, 0);
-      opacity: 0.5;
-    }
-  }
-
   .hero-spot {
     position: absolute;
     top: 0;
@@ -406,27 +345,13 @@
     background-size: 100% 1px;
   }
 
-  html[dir="rtl"] .link-line {
-    background-position: 100% 100%;
-  }
-
   .marquee-track {
     animation: marquee 42s linear infinite;
-  }
-
-  html[dir="rtl"] .marquee-track {
-    animation-name: marquee-rtl;
   }
 
   @keyframes marquee {
     to {
       transform: translate3d(-25%, 0, 0);
-    }
-  }
-
-  @keyframes marquee-rtl {
-    to {
-      transform: translate3d(25%, 0, 0);
     }
   }
 }

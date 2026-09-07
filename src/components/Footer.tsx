@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageProvider";
 import { site } from "../content/site";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -36,7 +35,6 @@ export function Footer() {
             <a href={`mailto:${site.email}`} className="type-nav link-line text-fog hover:text-bone">
               {t.footer.email}
             </a>
-            <LanguageSwitcher />
           </div>
         </div>
 

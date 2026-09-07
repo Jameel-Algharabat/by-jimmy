@@ -37,7 +37,7 @@ export function Process() {
 }
 
 function DesktopProcess() {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -67,7 +67,7 @@ function DesktopProcess() {
               <div className="col-span-5">
                 <AnimatePresence mode="wait">
                   <motion.p
-                    key={`${lang}-${step.n}-n`}
+                    key={`${step.n}-n`}
                     aria-hidden="true"
                     className="font-display text-[16vw] font-extrabold leading-[0.75] tracking-[-0.08em] text-bone/[0.08]"
                     initial={reduce ? false : { y: 40, opacity: 0 }}
@@ -83,7 +83,7 @@ function DesktopProcess() {
               <div className="col-span-7 pb-6">
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={`${lang}-${step.n}`}
+                    key={step.n}
                     initial={reduce ? false : { y: 28, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={reduce ? undefined : { y: -20, opacity: 0 }}

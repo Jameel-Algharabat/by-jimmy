@@ -1,66 +1,19 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
-import { copy, type Copy, type Lang } from "../content/copy";
+import { useEffect, type ReactNode } from "react";
+import { copy } from "../content/copy";
 import { site } from "../content/site";
 
-type LanguageContextValue = {
-  lang: Lang;
-  t: Copy;
-  setLang: (lang: Lang) => void;
-};
-
-const LanguageContext = createContext<LanguageContextValue | null>(null);
-
-function applyDocumentLang(lang: Lang) {
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-  document.title = site.title;
-}
-
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
-
   useEffect(() => {
-    const stored = window.localStorage.getItem("altura-lang") ?? window.localStorage.getItem("by-pixel-lang");
-    if (stored === "en" || stored === "ar") {
-      setLangState(stored);
-      applyDocumentLang(stored);
-    } else {
-      applyDocumentLang("en");
-    }
+    document.documentElement.lang = "en";
+    document.documentElement.dir = "ltr";
+    document.title = site.title;
+    window.localStorage.removeItem("altura-lang");
+    window.localStorage.removeItem("by-pixel-lang");
   }, []);
 
-  const setLang = useCallback((next: Lang) => {
-    setLangState(next);
-    window.localStorage.setItem("altura-lang", next);
-    applyDocumentLang(next);
-  }, []);
-
-  const value = useMemo(
-    () => ({
-      lang,
-      t: copy[lang],
-      setLang,
-    }),
-    [lang, setLang],
-  );
-
-  return (
-    <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
-  );
+  return children;
 }
 
 export function useLanguage() {
-  const ctx = useContext(LanguageContext);
-  if (!ctx) {
-    throw new Error("useLanguage must be used within LanguageProvider");
-  }
-  return ctx;
+  return { t: copy };
 }
