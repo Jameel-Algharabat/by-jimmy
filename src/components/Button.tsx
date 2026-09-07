@@ -10,6 +10,7 @@ type ButtonProps = {
   variant?: "solid" | "ghost" | "line";
   className?: string;
   disabled?: boolean;
+  ariaLabel?: string;
 };
 
 const variants = {
@@ -28,29 +29,41 @@ export function Button({
   variant = "solid",
   className = "",
   disabled,
+  ariaLabel,
 }: ButtonProps) {
   const classes = `type-btn ${variants[variant]} ${className}`;
   const inner = <span className="relative z-10">{children}</span>;
 
   const node = href ? (
     href.startsWith("#") ? (
-      <a href={href} className={classes} onClick={onClick}>
+      <a href={href} className={classes} onClick={onClick} aria-label={ariaLabel}>
         {inner}
       </a>
     ) : href.startsWith("http") ? (
-      <a href={href} className={classes} onClick={onClick} target="_blank" rel="noopener noreferrer">
+      <a
+        href={href}
+        className={classes}
+        onClick={onClick}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={ariaLabel}
+      >
         {inner}
       </a>
     ) : (
-      <Link to={href} className={classes} onClick={onClick}>
+      <Link to={href} className={classes} onClick={onClick} aria-label={ariaLabel}>
         {inner}
       </Link>
     )
   ) : (
-    <button type={type} className={classes} onClick={onClick} disabled={disabled}>
+    <button type={type} className={classes} onClick={onClick} disabled={disabled} aria-label={ariaLabel}>
       {inner}
     </button>
   );
 
-  return <Magnetic strength={variant === "line" ? 18 : 10}>{node}</Magnetic>;
+  return (
+    <Magnetic className="max-w-full" strength={variant === "line" ? 18 : 10}>
+      {node}
+    </Magnetic>
+  );
 }

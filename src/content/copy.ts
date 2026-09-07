@@ -1,5 +1,3 @@
-export type ProjectType = "design" | "development" | "landing" | "maintenance";
-
 export const copy = {
   skip: "Skip to content",
   scroll: "Scroll",
@@ -149,35 +147,9 @@ export const copy = {
   contact: {
     index: "06",
     label: "Contact",
-    title: "Ready to rise.\nStart here.",
-    lead: "Tell us what the business does, whether a site exists, and any timing that matters. We read every brief.",
-    book: "Work with ALTURA",
-    bookNote: "Or send a brief below.",
-    bookModalTitle: "A conversation",
-    bookModalLead: "Thirty minutes. The business, the product, and whether we should work together.",
-    bookModalCta: "Email to schedule",
-    bookClose: "Close",
-    name: "Name",
-    email: "Email",
-    type: "Where should we begin?",
-    types: {
-      design: "Web design",
-      development: "Web development",
-      landing: "Landing page",
-      maintenance: "After launch",
-    },
-    message: "Message",
-    submit: "Send the brief",
-    sending: "Sending",
-    successTitle: "It's with us.",
-    successBody: "We read every brief. You'll hear back by email.",
-    another: "Send another",
-    errors: {
-      name: "Please add your name.",
-      email: "Please add a valid email.",
-      type: "Please choose where we should begin.",
-      message: "Please add a short note about the project.",
-    },
+    title: "Have a project in mind?\nLet’s talk about it.",
+    book: "Book a 30-min Discovery Call",
+    bookAria: "Book a 30-minute discovery call, opens in a new tab",
   },
   footer: {
     email: "hello@altura.com",

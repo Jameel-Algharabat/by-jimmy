@@ -6,5 +6,5 @@ export const site = {
   url: "https://altura.com",
   email: "hello@altura.com",
   ogImage: "/og.png",
-  calendlyUrl: import.meta.env.VITE_CALENDLY_URL ?? "",
+  bookingUrl: "https://cal.com/jameel-gharabat-clbqfo/30min",
 } as const;
