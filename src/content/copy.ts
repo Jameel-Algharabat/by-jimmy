@@ -155,6 +155,13 @@ export const copy = {
     email: "hello@altura.com",
     line: "Digital experiences, raised.",
   },
+  notFound: {
+    label: "404",
+    title: "This page\ndoesn’t exist.",
+    lead: "The page you’re looking for may have moved, or the link may be incorrect.",
+    home: "Back to Home",
+    documentTitle: "Page not found | ALTURA",
+  },
 } as const;
 
 export type Copy = typeof copy;

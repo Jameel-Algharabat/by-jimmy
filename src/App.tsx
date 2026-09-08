@@ -6,6 +6,7 @@ import { ScrollManager } from "./components/ScrollManager";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { useLanguage } from "./context/LanguageProvider";
 import { HomePage } from "./pages/HomePage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 function SiteLayout() {
   const { t } = useLanguage();
@@ -34,7 +35,8 @@ export default function App() {
       <ScrollManager />
       <Routes>
         <Route element={<SiteLayout />}>
-          <Route path="/" element={<HomePage />} />
+          <Route index element={<HomePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

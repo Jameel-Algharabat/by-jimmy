@@ -57,8 +57,7 @@ export function Navigation() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const inner = pathname !== "/";
-  const workActive = inner || active === "work";
+  const onHome = pathname === "/";
 
   const links = [
     { id: "work", label: t.nav.work, n: "01" },
@@ -68,7 +67,7 @@ export function Navigation() {
   ];
 
   function isActive(id: string) {
-    return id === "work" ? workActive : !inner && active === id;
+    return onHome && active === id;
   }
 
   return (
