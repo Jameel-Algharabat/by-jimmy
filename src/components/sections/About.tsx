@@ -1,4 +1,5 @@
 import { useLanguage } from "../../context/LanguageProvider";
+import { GoldingWordmark } from "../GoldingWordmark";
 import { ClipReveal, Reveal } from "../Reveal";
 
 export function About() {
@@ -21,7 +22,9 @@ export function About() {
               <p className="type-index text-gold">
                 {t.about.index} — {t.about.label}
               </p>
-              <p className="type-meta mt-10 text-fog" dir="ltr">{t.about.name}</p>
+              <p className="type-meta mt-10" dir="ltr">
+                <GoldingWordmark />
+              </p>
               <p className="mt-3 max-w-[18ch] text-bone/70">{t.about.aside}</p>
             </Reveal>
           </div>

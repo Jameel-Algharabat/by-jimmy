@@ -3,6 +3,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "../context/LanguageProvider";
 import { site } from "../content/site";
+import { GoldingWordmark } from "./GoldingWordmark";
 
 const NAV_IDS = ["work", "services", "about", "contact"] as const;
 
@@ -78,8 +79,8 @@ export function Navigation() {
         }`}
       >
         <div className="shell flex h-[72px] items-center justify-between lg:h-20">
-          <Link to="/" className="type-logo link-line text-bone" dir="ltr" onClick={() => setOpen(false)}>
-            {site.name}
+          <Link to="/" className="type-logo link-line" dir="ltr" onClick={() => setOpen(false)}>
+            <GoldingWordmark />
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
@@ -150,8 +151,8 @@ export function Navigation() {
                 <a href={`mailto:${site.email}`} className="type-nav text-fog">
                   {site.email}
                 </a>
-                <p className="type-meta text-fog" dir="ltr">
-                  {site.name}
+                <p className="type-logo" dir="ltr">
+                  <GoldingWordmark />
                 </p>
               </div>
             </div>

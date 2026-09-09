@@ -11,6 +11,8 @@
   --color-ash: #161412;
   --color-line: #2e2a24;
   --color-gold: #c5a46a;
+  --color-gold-highlight: #e6d09a;
+  --color-gold-deep: #9a7844;
 }
 
 @layer base {
@@ -127,6 +129,26 @@
     text-transform: uppercase;
     direction: ltr;
     unicode-bidi: isolate;
+  }
+
+  .gold-flow {
+    display: inline-block;
+    background-image: linear-gradient(
+      105deg,
+      var(--color-gold-deep) 0%,
+      var(--color-gold) 18%,
+      var(--color-gold-highlight) 34%,
+      var(--color-gold) 50%,
+      var(--color-gold-deep) 66%,
+      var(--color-gold-highlight) 82%,
+      var(--color-gold) 100%
+    );
+    background-size: 280% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gold-flow 16s ease-in-out infinite;
   }
 
   .type-display {
@@ -337,6 +359,16 @@
       transform: translate3d(-25%, 0, 0);
     }
   }
+
+  @keyframes gold-flow {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -355,7 +387,14 @@
   .hero-grid-drift,
   .hero-wash,
   .hero-rule-h,
-  .hero-rule-v {
+  .hero-rule-v,
+  .gold-flow {
     animation: none;
+  }
+
+  .gold-flow {
+    background-image: none;
+    color: var(--color-gold);
+    -webkit-text-fill-color: var(--color-gold);
   }
 }

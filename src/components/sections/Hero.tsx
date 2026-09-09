@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { useLanguage } from "../../context/LanguageProvider";
 import { Button } from "../Button";
 import { ClipReveal } from "../Reveal";
+import { GoldingWordmark } from "../GoldingWordmark";
 
 export function Hero() {
   const { t } = useLanguage();
@@ -64,14 +65,12 @@ export function Hero() {
           </ClipReveal>
 
           <motion.h1
-            className="type-hero mt-7 text-bone md:mt-10"
+            className="type-hero mt-7 md:mt-10"
             aria-label={t.hero.title}
             dir="ltr"
             style={reduce ? undefined : { x, y }}
           >
-            <span className="block whitespace-nowrap">
-              <Letters text={t.hero.title} delay={0.12} accentFirst />
-            </span>
+            <GoldingWordmark reveal className="block" />
           </motion.h1>
 
           <div className="mt-10 grid grid-cols-1 items-end gap-10 border-t border-line pt-8 md:mt-14 md:grid-cols-12 md:pt-10">
@@ -128,39 +127,6 @@ export function Hero() {
       </section>
 
       <Ticker items={t.hero.roles} />
-    </>
-  );
-}
-
-function Letters({
-  text,
-  delay,
-  accentFirst = false,
-}: {
-  text: string;
-  delay: number;
-  accentFirst?: boolean;
-}) {
-  const reduce = useReducedMotion();
-
-  return (
-    <>
-      {text.split("").map((char, i) => (
-        <span key={`${char}-${i}`} className="inline-block overflow-hidden align-bottom">
-          <motion.span
-            className={`inline-block ${accentFirst && i === 0 ? "text-gold" : ""}`}
-            initial={reduce ? false : { y: "110%" }}
-            animate={{ y: "0%" }}
-            transition={{
-              delay: delay + i * 0.035,
-              duration: 0.9,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        </span>
-      ))}
     </>
   );
 }
