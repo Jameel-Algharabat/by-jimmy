@@ -60,7 +60,7 @@ export function Hero() {
 
         <div className="shell relative z-10">
           <ClipReveal>
-            <p className="type-index text-ember">{t.hero.kicker}</p>
+            <p className="type-index text-gold">{t.hero.kicker}</p>
           </ClipReveal>
 
           <motion.h1
@@ -70,7 +70,7 @@ export function Hero() {
             style={reduce ? undefined : { x, y }}
           >
             <span className="block whitespace-nowrap">
-              <Letters text={t.hero.title} delay={0.12} />
+              <Letters text={t.hero.title} delay={0.12} accentFirst />
             </span>
           </motion.h1>
 
@@ -118,7 +118,7 @@ export function Hero() {
             <span className="type-index text-fog">{t.scroll}</span>
             <span className="relative h-11 w-px overflow-hidden bg-line">
               <motion.span
-                className="absolute inset-x-0 h-4 bg-ember"
+                className="absolute inset-x-0 h-4 bg-gold"
                 animate={reduce ? undefined : { y: ["-100%", "240%"] }}
                 transition={{ duration: 1.7, repeat: Infinity, ease: "easeInOut" }}
               />
@@ -132,7 +132,15 @@ export function Hero() {
   );
 }
 
-function Letters({ text, delay }: { text: string; delay: number }) {
+function Letters({
+  text,
+  delay,
+  accentFirst = false,
+}: {
+  text: string;
+  delay: number;
+  accentFirst?: boolean;
+}) {
   const reduce = useReducedMotion();
 
   return (
@@ -140,7 +148,7 @@ function Letters({ text, delay }: { text: string; delay: number }) {
       {text.split("").map((char, i) => (
         <span key={`${char}-${i}`} className="inline-block overflow-hidden align-bottom">
           <motion.span
-            className="inline-block"
+            className={`inline-block ${accentFirst && i === 0 ? "text-gold" : ""}`}
             initial={reduce ? false : { y: "110%" }}
             animate={{ y: "0%" }}
             transition={{
@@ -167,7 +175,7 @@ function Ticker({ items }: { items: readonly string[] }) {
         {row.map((item, i) => (
           <span key={`${item}-${i}`} className="type-meta flex items-center gap-10 whitespace-nowrap text-fog">
             {item}
-            <span className="text-ember">/</span>
+            <span className="text-gold">/</span>
           </span>
         ))}
       </div>

@@ -13,7 +13,7 @@ export function Services() {
     <section id="services" className="border-t border-line bg-night py-24 md:py-36">
       <div className="shell">
         <Reveal>
-          <p className="type-index text-ember">
+          <p className="type-index text-gold">
             {t.services.index} — {t.services.label}
           </p>
           <h2 className="type-display mt-5">{t.services.title}</h2>
@@ -71,7 +71,7 @@ export function Services() {
                   onFocus={() => setOpen(i)}
                   aria-pressed={on}
                 >
-                  <span className={`type-index ${on ? "text-ember" : "text-fog"}`}>{item.n}</span>
+                  <span className={`type-index ${on ? "text-gold" : "text-fog"}`}>{item.n}</span>
                   <span
                     className={`font-display text-[4vw] font-bold leading-[0.9] tracking-[-0.045em] transition-colors duration-500 ${
                       on ? "text-bone" : "text-fog/55"

@@ -15,15 +15,15 @@ export function Process() {
   return (
     <section id="process" className="relative bg-night">
       <div className="shell py-24 md:hidden">
-        <p className="type-index text-ember">
+        <p className="type-index text-gold">
           {t.process.index} — {t.process.label}
         </p>
-        <h2 className="type-display mt-5">{t.process.title}</h2>
+        <h2 className="type-display mt-5 whitespace-pre-line">{t.process.title}</h2>
         <div className="relative mt-12 border-s border-line ps-6">
           {t.process.steps.map((step) => (
             <div key={step.n} className="relative pb-12 last:pb-0">
-              <span className="absolute top-1.5 -start-[29px] h-2 w-2 rounded-full bg-ember" />
-              <p className="type-index text-ember">{step.n}</p>
+              <span className="absolute top-1.5 -start-[29px] h-2 w-2 rounded-full bg-gold" />
+              <p className="type-index text-gold">{step.n}</p>
               <h3 className="type-h3 mt-3">{step.title}</h3>
               <p className="mt-3 max-w-[32ch] text-fog">{step.body}</p>
             </div>
@@ -57,10 +57,10 @@ function DesktopProcess() {
         <div className="sticky top-0 flex min-h-svh flex-col justify-center overflow-hidden py-24">
           <div className="shell">
             <Reveal>
-              <p className="type-index text-ember">
+              <p className="type-index text-gold">
                 {t.process.index} — {t.process.label}
               </p>
-              <h2 className="type-display mt-5">{t.process.title}</h2>
+              <h2 className="type-display mt-5 whitespace-pre-line">{t.process.title}</h2>
             </Reveal>
 
             <div className="relative mt-16 grid grid-cols-12 items-end gap-10">
@@ -89,7 +89,7 @@ function DesktopProcess() {
                     exit={reduce ? undefined : { y: -20, opacity: 0 }}
                     transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <p className="type-index text-ember">{step.n}</p>
+                    <p className="type-index text-gold">{step.n}</p>
                     <h3 className="type-display mt-4 text-bone">{step.title}</h3>
                     <p className="type-lead mt-6 max-w-[34ch] text-fog">{step.body}</p>
                   </motion.div>
@@ -101,7 +101,7 @@ function DesktopProcess() {
               {t.process.steps.map((item, i) => (
                 <span
                   key={item.n}
-                  className={`h-px flex-1 transition-colors duration-500 ${i <= active ? "bg-ember" : "bg-line"}`}
+                  className={`h-px flex-1 transition-colors duration-500 ${i <= active ? "bg-gold" : "bg-line"}`}
                 />
               ))}
             </div>

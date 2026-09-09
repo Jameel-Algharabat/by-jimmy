@@ -37,7 +37,7 @@ export function NotFoundPage() {
 
       <div className="shell relative">
         <motion.p
-          className="type-index text-ember"
+          className="type-index text-gold"
           initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease }}

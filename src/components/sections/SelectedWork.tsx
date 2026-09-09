@@ -14,7 +14,7 @@ export function SelectedWork() {
     <section id="work" className="bg-night pb-8 pt-24 md:pt-36">
       <div className="shell mb-14 md:mb-20">
         <Reveal>
-          <p className="type-index text-ember">
+          <p className="type-index text-gold">
             {t.work.index} — {t.work.label}
           </p>
           <h2 className="type-display mt-5 max-w-[20ch] whitespace-pre-line">{t.work.title}</h2>
@@ -28,7 +28,7 @@ export function SelectedWork() {
         <div className="shell mt-14 grid grid-cols-1 gap-10 pb-4 md:mt-16 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-8">
             <ClipReveal>
-              <p className="type-index text-ember">{featured.category}</p>
+              <p className="type-index text-gold">{featured.category}</p>
             </ClipReveal>
             <ClipReveal delay={0.06}>
               <h3 className="type-h2 mt-4 max-w-[22ch] text-bone">{featured.header}</h3>
@@ -101,13 +101,13 @@ function DeviceShowcase({
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="rounded-2xl bg-gradient-to-br from-bone/30 via-line to-ember/50 p-px shadow-2xl shadow-black/50 transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.012]">
+        <div className="rounded-2xl bg-gradient-to-br from-bone/30 via-line to-gold/50 p-px shadow-2xl shadow-black/50 transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.012]">
           <div className="overflow-hidden rounded-[15px] bg-void ring-1 ring-bone/5">
             <div className="flex items-center gap-3 border-b border-white/5 px-4 py-2.5">
               <span className="flex gap-1.5" aria-hidden="true">
                 <span className="size-2 rounded-full bg-[#3A3733]" />
                 <span className="size-2 rounded-full bg-[#3A3733]" />
-                <span className="size-2 rounded-full bg-ember/70" />
+                <span className="size-2 rounded-full bg-gold/70" />
               </span>
               <span className="min-w-0 flex-1 truncate rounded-full bg-ash px-3 py-1 text-center type-meta text-fog">
                 {featured.websiteLabel}
@@ -154,7 +154,7 @@ function FounderReference({ quote }: { quote: Copy["work"]["testimonial"] }) {
             </div>
 
             <div className="mt-7">
-              <p className="type-meta text-ember">{quote.contact}</p>
+              <p className="type-meta text-gold">{quote.contact}</p>
               <div className="mt-4 flex flex-col gap-3 sm:flex-row">
                 <ContactAction href={quote.linkedIn} label={quote.linkedInLabel} icon="linkedin" />
                 <ContactAction href={`mailto:${quote.email}`} label={quote.emailLabel} icon="email" />
@@ -172,7 +172,7 @@ function FounderPhoto({ src, name, initials }: { src?: string; name: string; ini
   const showImage = Boolean(src) && !failed;
 
   return (
-    <div className="rounded-full bg-gradient-to-br from-ember to-bone/40 p-[2px]">
+    <div className="rounded-full bg-gradient-to-br from-gold to-bone/40 p-[2px]">
       <div className="size-16 overflow-hidden rounded-full bg-night md:size-[4.5rem]">
         {showImage ? (
           <img
@@ -209,7 +209,7 @@ function ContactAction({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className="group inline-flex flex-1 items-center justify-center gap-2.5 rounded-xl border border-bone/10 bg-night/70 px-5 py-3.5 text-bone transition-all duration-300 hover:border-ember/70 hover:bg-ember/10 hover:shadow-[0_0_24px_-6px_rgba(201,174,138,0.55)]"
+      className="group inline-flex flex-1 items-center justify-center gap-2.5 rounded-xl border border-bone/10 bg-night/70 px-5 py-3.5 text-bone transition-all duration-300 hover:border-gold/70 hover:bg-gold/10 hover:shadow-[0_0_24px_-6px_rgba(197,164,106,0.45)]"
     >
       {icon === "linkedin" ? <LinkedInIcon /> : <MailIcon />}
       <span className="type-btn">{label}</span>

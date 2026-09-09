@@ -78,7 +78,7 @@ export function Navigation() {
         }`}
       >
         <div className="shell flex h-[72px] items-center justify-between lg:h-20">
-          <Link to="/" className="type-logo text-bone" dir="ltr" onClick={() => setOpen(false)}>
+          <Link to="/" className="type-logo link-line text-bone" dir="ltr" onClick={() => setOpen(false)}>
             {site.name}
           </Link>
 
@@ -136,7 +136,7 @@ export function Navigation() {
                     >
                       <span
                         className={`font-display text-[11.5vw] font-bold leading-[0.85] tracking-[-0.05em] ${
-                          isActive(link.id) ? "text-ember" : "text-bone"
+                          isActive(link.id) ? "text-gold" : "text-bone"
                         }`}
                       >
                         {link.label}

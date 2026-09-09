@@ -17,7 +17,7 @@ export function Footer() {
     <footer className="border-t border-line bg-night">
       <div className="shell py-12 md:py-16">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-          <Link to="/" className="type-hero whitespace-nowrap text-[11.5vw] leading-none text-bone md:text-[5.2vw]" dir="ltr">
+          <Link to="/" className="type-hero whitespace-nowrap text-[10vw] leading-none text-bone md:text-[4.8vw]" dir="ltr">
             {site.name}
           </Link>
           <p className="type-lead max-w-[24ch] text-fog">{t.footer.line}</p>

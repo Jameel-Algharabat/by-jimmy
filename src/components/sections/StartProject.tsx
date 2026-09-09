@@ -17,7 +17,7 @@ export function StartProject() {
 
       <div className="shell relative">
         <Reveal>
-          <p className="type-index text-ember">
+          <p className="type-index text-gold">
             {t.contact.index} — {t.contact.label}
           </p>
         </Reveal>

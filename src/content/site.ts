@@ -1,10 +1,10 @@
 export const site = {
-  name: "ALTURA",
-  title: "ALTURA | Digital Experiences, Raised",
+  name: "GOLDING",
+  title: "GOLDING | Digital Studio",
   description:
-    "ALTURA designs and engineers high-performance websites and digital experiences. Strategy, craft, and intelligent workflows — for companies that expect a higher standard.",
-  url: "https://altura.com",
-  email: "hello@altura.com",
+    "GOLDING is a premium digital studio. We design and engineer websites, products, and intelligent systems — with craft, precision, and quiet confidence.",
+  url: "https://golding.com",
+  email: "hello@golding.com",
   ogImage: "/og.png",
   bookingUrl: "https://cal.com/jameel-gharabat-clbqfo/30min",
 } as const;

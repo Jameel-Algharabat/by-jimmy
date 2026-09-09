@@ -8,7 +8,7 @@ export function About() {
     <section id="about" className="relative overflow-hidden border-t border-line bg-ash py-24 md:py-36">
       <p
         aria-hidden="true"
-        className="pointer-events-none absolute -end-[6vw] top-6 font-display text-[32vw] font-extrabold leading-none tracking-[-0.08em] text-bone/[0.035] md:top-0"
+        className="pointer-events-none absolute -end-[8vw] top-8 font-display text-[26vw] font-extrabold leading-none tracking-[-0.08em] text-bone/[0.035] md:top-0"
         dir="ltr"
       >
         {t.about.name}
@@ -18,7 +18,7 @@ export function About() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <Reveal>
-              <p className="type-index text-ember">
+              <p className="type-index text-gold">
                 {t.about.index} — {t.about.label}
               </p>
               <p className="type-meta mt-10 text-fog" dir="ltr">{t.about.name}</p>

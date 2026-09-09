@@ -8,7 +8,7 @@ export function Why() {
     <section id="why" className="border-t border-line bg-ash py-24 md:py-36">
       <div className="shell">
         <Reveal>
-          <p className="type-index text-ember">
+          <p className="type-index text-gold">
             {t.why.index} — {t.why.label}
           </p>
         </Reveal>
@@ -20,7 +20,7 @@ export function Why() {
           {t.why.items.map((item, i) => (
             <Reveal key={item.n} delay={i * 0.06}>
               <article className="group grid grid-cols-1 gap-4 border-t border-line py-10 transition-colors duration-500 md:grid-cols-12 md:items-baseline md:gap-8 md:py-16">
-                <p className="type-index text-fog transition-colors duration-500 group-hover:text-ember md:col-span-2">
+                <p className="type-index text-fog transition-colors duration-500 group-hover:text-gold md:col-span-2">
                   {item.n}
                 </p>
                 <h3 className="type-h3 md:col-span-5">{item.title}</h3>

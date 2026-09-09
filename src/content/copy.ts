@@ -10,10 +10,10 @@ export const copy = {
     close: "Close",
   },
   hero: {
-    kicker: "Digital agency for higher standards",
-    title: "ALTURA",
-    line: "Digital experiences,\nraised.",
-    lead: "ALTURA designs and engineers websites and digital experiences that raise how a business is seen, used, and trusted. Strategy, design, and engineering — held to a higher standard.",
+    kicker: "Digital studio for intelligent work",
+    title: "GOLDING",
+    line: "Work that holds\nits value.",
+    lead: "GOLDING designs and engineers websites, products, and intelligent systems. Strategy, design, and engineering — made with precision, and built to last.",
     primary: "Start a project",
     secondary: "See the work",
     roles: ["Strategy", "Design", "Engineering", "Intelligence"],
@@ -61,7 +61,7 @@ export const copy = {
   services: {
     index: "02",
     label: "Services",
-    title: "What we raise.",
+    title: "What we make.",
     items: [
       {
         n: "01",
@@ -88,17 +88,17 @@ export const copy = {
   about: {
     index: "03",
     label: "About",
-    name: "ALTURA",
-    aside: "Digital agency · Elevation through craft",
-    title: "ALTURA exists to raise how a business is experienced online.",
-    p1: "We combine strategy, design, engineering, and human creativity. Modern technology — including AI — sits inside the workflow: research, exploration, production. The point is not a louder site. It is a higher standard of presence.",
+    name: "GOLDING",
+    aside: "Digital studio · Intelligence in the craft",
+    title: "GOLDING exists to make digital work that holds its value.",
+    p1: "We combine strategy, design, engineering, and human judgment. Intelligent tools sit inside the process — research, exploration, production — so the work is sharper, not louder.",
     p2: "The collaboration is direct. You speak with the people making the product. Decisions stay close. The work is made to represent a business — local or international — and to help people hire you or buy from you.",
-    p3: "We are a lean studio. There is no account layer. If the work is ours to make, we make it. Then we stay with it — testing, refining, raising the experience as the business grows.",
+    p3: "We are a lean studio. There is no account layer. If the work is ours to make, we make it. Then we stay with it — testing, refining, keeping the product exact as the business grows.",
   },
   process: {
     index: "04",
     label: "Process",
-    title: "Work that keeps rising.",
+    title: "From first brief\nto lasting work.",
     steps: [
       {
         n: "01",
@@ -118,14 +118,14 @@ export const copy = {
       {
         n: "04",
         title: "Evolve",
-        body: "Launch is a beginning. We test, refine, and keep raising the product as the business changes.",
+        body: "Launch is a beginning. We test, refine, and keep the product exact as the business changes.",
       },
     ],
   },
   why: {
     index: "05",
-    label: "Why ALTURA",
-    title: "Higher standards.\nClearer execution.",
+    label: "Why GOLDING",
+    title: "Quiet confidence.\nExacting work.",
     items: [
       {
         n: "01",
@@ -135,12 +135,12 @@ export const copy = {
       {
         n: "02",
         title: "One system, not a handoff.",
-        body: "Design, engineering, and modern AI-powered workflows stay in the same conversation. Nothing is lost between the idea and the build.",
+        body: "Design, engineering, and intelligent workflows stay in the same conversation. Nothing is lost between the idea and the build.",
       },
       {
         n: "03",
-        title: "Built to perform.",
-        body: "The site has a job: represent the company, earn trust, and convert. We design for that — then keep raising it.",
+        title: "Built to last.",
+        body: "The site has a job: represent the company, earn trust, and convert. We design for that — then keep it exact.",
       },
     ],
   },
@@ -152,15 +152,15 @@ export const copy = {
     bookAria: "Book a 30-minute discovery call, opens in a new tab",
   },
   footer: {
-    email: "hello@altura.com",
-    line: "Digital experiences, raised.",
+    email: "hello@golding.com",
+    line: "Work that holds its value.",
   },
   notFound: {
     label: "404",
     title: "This page\ndoesn’t exist.",
     lead: "The page you’re looking for may have moved, or the link may be incorrect.",
     home: "Back to Home",
-    documentTitle: "Page not found | ALTURA",
+    documentTitle: "Page not found | GOLDING",
   },
 } as const;
 
