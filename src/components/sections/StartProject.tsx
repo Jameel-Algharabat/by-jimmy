@@ -18,7 +18,7 @@ export function StartProject() {
           </p>
         </Reveal>
         <ClipReveal delay={0.05}>
-          <h2 className="type-display mt-6 max-w-[16ch] text-pretty whitespace-pre-line">{t.contact.title}</h2>
+          <h2 className="type-display mt-6 max-w-[16ch] text-pretty whitespace-pre-line rtl:max-w-[24ch]">{t.contact.title}</h2>
         </ClipReveal>
 
         <Reveal className="mt-12 max-w-full md:mt-16" delay={0.12}>

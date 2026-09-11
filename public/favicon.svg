@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="RASM">
-  <rect width="32" height="32" fill="#F2EEE6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="ARTBOX">
+  <rect width="32" height="32" fill="#F7F7F6"/>
   <text
     x="16"
     y="23"
     text-anchor="middle"
-    fill="#9A4F32"
+    fill="#161616"
     font-family="Georgia, serif"
     font-size="18"
     font-style="italic"
-  >R</text>
+  >A</text>
 </svg>

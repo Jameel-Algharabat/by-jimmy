@@ -6,12 +6,16 @@ import { SelectedWork } from "../components/sections/SelectedWork";
 import { Services } from "../components/sections/Services";
 import { StartProject } from "../components/sections/StartProject";
 import { Why } from "../components/sections/Why";
-import { site } from "../content/site";
+import { useLanguage } from "../context/LanguageProvider";
 
 export function HomePage() {
+  const { t } = useLanguage();
+
   useEffect(() => {
-    document.title = site.title;
-  }, []);
+    document.title = t.meta.title;
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute("content", t.meta.description);
+  }, [t.meta.title, t.meta.description]);
 
   return (
     <main id="main">

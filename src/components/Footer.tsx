@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageProvider";
 import { site } from "../content/site";
-import { RasmWordmark } from "./RasmWordmark";
+import { LanguageSwitch } from "./LanguageSwitch";
+import { Wordmark } from "./Wordmark";
 import { Stroke } from "./Stroke";
 
 export function Footer() {
@@ -20,8 +21,8 @@ export function Footer() {
       <div className="shell py-12 md:py-16">
         <Stroke className="mb-12 h-[2px] w-full" />
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-          <Link to="/" className="type-hero whitespace-nowrap text-[10vw] leading-none md:text-[4.8vw]" dir="ltr">
-            <RasmWordmark />
+          <Link to="/" className="type-hero whitespace-nowrap text-[12vw] leading-none md:text-[4vw]" dir="ltr">
+            <Wordmark />
           </Link>
           <p className="type-lead max-w-[24ch] text-fog">{t.footer.line}</p>
         </div>
@@ -35,7 +36,8 @@ export function Footer() {
             ))}
           </nav>
           <div className="flex flex-wrap items-center gap-6">
-            <a href={`mailto:${site.email}`} className="type-nav link-line text-fog hover:text-bone">
+            <LanguageSwitch />
+            <a href={`mailto:${site.email}`} className="type-nav link-line text-fog hover:text-bone" dir="ltr">
               {t.footer.email}
             </a>
           </div>

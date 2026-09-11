@@ -9,7 +9,7 @@ export function Thread() {
   if (reduce) {
     return (
       <svg
-        className="pointer-events-none fixed inset-0 z-[4] hidden h-full w-full text-gold/20 md:block"
+        className="pointer-events-none fixed inset-0 z-[4] hidden h-full w-full text-bone/15 md:block"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
         aria-hidden="true"
@@ -21,7 +21,7 @@ export function Thread() {
 
   return (
     <svg
-      className="pointer-events-none fixed inset-0 z-[4] hidden h-full w-full text-gold/20 md:block"
+        className="pointer-events-none fixed inset-0 z-[4] hidden h-full w-full text-bone/15 md:block"
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
       aria-hidden="true"

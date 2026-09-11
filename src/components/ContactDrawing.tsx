@@ -5,7 +5,7 @@ export function ContactDrawing() {
 
   return (
     <svg
-      className="pointer-events-none absolute inset-0 h-full w-full text-gold"
+      className="pointer-events-none absolute inset-0 h-full w-full text-bone/25"
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
       aria-hidden="true"

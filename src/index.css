@@ -1,18 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Instrument Serif", "Times New Roman", ui-serif, Georgia, serif;
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Newsreader", "Times New Roman", ui-serif, Georgia, serif;
+  --font-sans-ar: "IBM Plex Sans Arabic", "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-display-ar: "Noto Naskh Arabic", "Times New Roman", ui-serif, Georgia, serif;
 
-  --color-night: #f2eee6;
-  --color-void: #e7e1d4;
-  --color-bone: #171614;
-  --color-fog: #5c5852;
-  --color-ash: #e4ddd0;
-  --color-line: #c9c2b4;
-  --color-gold: #9a4f32;
-  --color-gold-highlight: #c47a58;
-  --color-gold-deep: #6e3420;
+  --color-night: #f7f7f6;
+  --color-void: #efefed;
+  --color-bone: #161616;
+  --color-fog: #6a6a6a;
+  --color-ash: #e9e9e7;
+  --color-line: #d6d6d3;
+  --color-gold: #2a2a2a;
+  --color-gold-highlight: #3f3f3f;
+  --color-gold-deep: #111111;
+  --color-white: #ffffff;
 }
 
 @layer base {
@@ -22,15 +25,21 @@
     background: var(--color-night);
   }
 
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 24px;
+    }
+  }
+
   body {
     margin: 0;
     min-width: 320px;
     background: var(--color-night);
     color: var(--color-bone);
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 16.5px;
     font-weight: 400;
-    line-height: 1.65;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -68,14 +77,6 @@
     max-width: 100%;
     display: block;
   }
-
-  @media (pointer: fine) {
-    .has-cursor,
-    .has-cursor a,
-    .has-cursor button {
-      cursor: none;
-    }
-  }
 }
 
 @layer components {
@@ -84,10 +85,10 @@
   }
 
   .type-logo {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 400;
-    letter-spacing: 0.18em;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
     line-height: 1;
     text-transform: uppercase;
     direction: ltr;
@@ -122,10 +123,10 @@
 
   .type-hero {
     font-family: var(--font-display);
-    font-size: clamp(64px, 14vw, 168px);
+    font-size: clamp(56px, 11vw, 120px);
     font-weight: 400;
-    letter-spacing: -0.045em;
-    line-height: 1;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
     font-style: italic;
     text-transform: none;
     direction: ltr;
@@ -138,19 +139,19 @@
 
   .type-display {
     font-family: var(--font-display);
-    font-size: clamp(36px, 6vw, 84px);
+    font-size: clamp(32px, 4.8vw, 64px);
     font-weight: 400;
-    letter-spacing: -0.035em;
-    line-height: 0.98;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
     font-style: italic;
   }
 
   .type-h2 {
     font-family: var(--font-display);
-    font-size: clamp(28px, 3.6vw, 52px);
+    font-size: clamp(26px, 3vw, 42px);
     font-weight: 400;
-    letter-spacing: -0.03em;
-    line-height: 1.08;
+    letter-spacing: -0.025em;
+    line-height: 1.16;
     font-style: italic;
   }
 
@@ -173,13 +174,13 @@
 
   .outline-type {
     color: transparent;
-    -webkit-text-stroke: 1px color-mix(in srgb, var(--color-gold) 45%, transparent);
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--color-bone) 22%, transparent);
   }
 
   .type-lead {
-    font-size: clamp(17px, 1.4vw, 20px);
+    font-size: clamp(16px, 1.2vw, 18px);
     font-weight: 400;
-    line-height: 1.55;
+    line-height: 1.7;
   }
 
   .type-btn {
@@ -193,8 +194,8 @@
   .shell {
     margin-inline: auto;
     width: 100%;
-    max-width: 1440px;
-    padding-inline: 20px;
+    max-width: 1080px;
+    padding-inline: 24px;
   }
 
   @media (min-width: 768px) {
@@ -203,9 +204,44 @@
     }
   }
 
-  @media (min-width: 1280px) {
-    .shell {
-      padding-inline: 56px;
+  .site-frame {
+    width: 100%;
+    min-width: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .site-frame {
+      padding-inline-start: 12rem;
+    }
+
+    .progress-bar {
+      inset-inline-start: 12rem;
+      width: calc(100% - 12rem);
+    }
+  }
+
+  .surface,
+  .surface-soft {
+    position: relative;
+    background: var(--color-white);
+    border: 1px solid var(--color-line);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px rgb(16 16 16 / 0.035), 0 8px 20px rgb(16 16 16 / 0.03);
+    transform: scale(1);
+    transform-origin: center;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .surface:hover,
+    .surface-soft:hover {
+      z-index: 2;
+      border-color: color-mix(in srgb, var(--color-bone) 16%, var(--color-line));
+      box-shadow: 0 2px 6px rgb(16 16 16 / 0.04), 0 14px 28px rgb(16 16 16 / 0.055);
+      transform: scale(1.02);
     }
   }
 
@@ -235,7 +271,7 @@
     background-repeat: no-repeat;
     background-size: 0 1px;
     padding-bottom: 3px;
-    transition: background-size 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+    transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
   }
 
   .link-line:hover,
@@ -257,7 +293,7 @@
   .draw-in {
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
-    animation: draw-in 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: draw-in 2.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   @keyframes draw-in {
@@ -286,8 +322,8 @@
   }
 
   .mask-reveal {
-    clip-path: inset(12% 18% 12% 18%);
-    transition: clip-path 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    clip-path: inset(10% 14% 10% 14%);
+    transition: clip-path 1.05s cubic-bezier(0.22, 1, 0.36, 1), transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .mask-reveal.is-open,
@@ -303,6 +339,59 @@
   .stroke-draw.is-drawn {
     animation: draw-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-sans-ar);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+html[dir="rtl"] .font-display,
+html[dir="rtl"] .type-display,
+html[dir="rtl"] .type-h2,
+html[dir="rtl"] .type-h3,
+html[dir="rtl"] .type-quote {
+  font-family: var(--font-display-ar);
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .type-display,
+html[dir="rtl"] .type-h2,
+html[dir="rtl"] .type-h3,
+html[dir="rtl"] .type-lead {
+  line-height: 1.45;
+}
+
+html[dir="rtl"] .type-nav,
+html[dir="rtl"] .type-index,
+html[dir="rtl"] .type-meta,
+html[dir="rtl"] .type-btn {
+  font-family: var(--font-sans-ar);
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+html[dir="rtl"] .type-logo {
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+html[dir="rtl"] .progress-bar {
+  transform-origin: 100% 50%;
+}
+
+html[dir="rtl"] .link-line {
+  background-position: 100% 100%;
+}
+
+html[dir="rtl"] .btn-ink::after {
+  clip-path: inset(0 0 0 100%);
+}
+
+html[dir="rtl"] .marquee-track {
+  animation-direction: reverse;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -327,5 +416,13 @@
   .mask-reveal.is-open,
   .group:hover .mask-reveal {
     clip-path: none;
+  }
+
+  .surface,
+  .surface-soft,
+  .surface:hover,
+  .surface-soft:hover {
+    transform: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 }

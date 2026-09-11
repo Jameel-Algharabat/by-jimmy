@@ -1,5 +1,4 @@
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import { Cursor } from "./components/Cursor";
 import { Footer } from "./components/Footer";
 import { Loader } from "./components/Loader";
 import { Navigation } from "./components/Navigation";
@@ -17,7 +16,6 @@ function SiteLayout() {
     <>
       <div className="grain" aria-hidden="true" />
       <ScrollProgress />
-      <Cursor />
       <Thread />
       <Loader />
       <a
@@ -27,8 +25,10 @@ function SiteLayout() {
         {t.skip}
       </a>
       <Navigation />
-      <Outlet />
-      <Footer />
+      <div className="site-frame">
+        <Outlet />
+        <Footer />
+      </div>
     </>
   );
 }

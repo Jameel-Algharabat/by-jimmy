@@ -8,7 +8,7 @@ type RevealProps = {
   y?: number;
 };
 
-export function Reveal({ children, className, delay = 0, y = 28 }: RevealProps) {
+export function Reveal({ children, className, delay = 0, y = 18 }: RevealProps) {
   const reduce = useReducedMotion();
   if (reduce) return <div className={className}>{children}</div>;
 
@@ -18,7 +18,7 @@ export function Reveal({ children, className, delay = 0, y = 28 }: RevealProps) 
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2, margin: "0px 0px -8% 0px" }}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>
@@ -49,7 +49,7 @@ export function ClipReveal({
           hidden: { y: "110%" },
           show: { y: "0%" },
         }}
-        transition={{ duration: 1, delay, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] }}
       >
         {children}
       </motion.div>

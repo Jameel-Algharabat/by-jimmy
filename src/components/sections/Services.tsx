@@ -1,14 +1,10 @@
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useState } from "react";
 import { useLanguage } from "../../context/LanguageProvider";
 import { Reveal } from "../Reveal";
+import { Slider } from "../Slider";
 import { Stroke } from "../Stroke";
 
 export function Services() {
   const { t } = useLanguage();
-  const reduce = useReducedMotion();
-  const [open, setOpen] = useState(0);
-  const active = t.services.items[open];
 
   return (
     <section id="services" className="bg-night py-24 md:py-36">
@@ -21,99 +17,16 @@ export function Services() {
         </Reveal>
         <Stroke className="mt-10 h-[2px] w-24" />
 
-        <div className="mt-14 md:hidden">
-          {t.services.items.map((item, i) => {
-            const on = open === i;
-            return (
-              <div key={item.n} className="border-t border-line last:border-b">
-                <button
-                  type="button"
-                  className="flex w-full items-baseline justify-between gap-6 py-7 text-start"
-                  onClick={() => setOpen(i)}
-                  aria-expanded={on}
-                >
-                  <span className="type-index text-gold">{item.n}</span>
-                  <span
-                    className={`flex-1 font-display text-[9vw] italic leading-[0.95] tracking-[-0.04em] ${
-                      on ? "text-bone" : "text-fog"
-                    }`}
-                  >
-                    {item.title}
-                  </span>
-                </button>
-                <AnimatePresence initial={false}>
-                  {on ? (
-                    <motion.div
-                      key={item.n}
-                      initial={reduce ? false : { height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={reduce ? undefined : { height: 0, opacity: 0 }}
-                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="type-lead max-w-[42ch] pb-8 ps-14 text-fog">{item.body}</p>
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-20 hidden grid-cols-12 gap-12 md:grid lg:gap-20">
-          <div className="col-span-7">
-            {t.services.items.map((item, i) => {
-              const on = open === i;
-              return (
-                <button
-                  key={item.n}
-                  type="button"
-                  className="group flex w-full items-baseline gap-8 border-t border-line py-9 text-start last:border-b"
-                  onMouseEnter={() => setOpen(i)}
-                  onFocus={() => setOpen(i)}
-                  aria-pressed={on}
-                >
-                  <span className={`type-index ${on ? "text-gold" : "text-fog"}`}>{item.n}</span>
-                  <span className="relative flex-1">
-                    <span
-                      className={`block font-display text-[3.6vw] italic leading-[0.95] tracking-[-0.045em] transition-colors duration-500 ${
-                        on ? "text-bone" : "text-fog/55"
-                      }`}
-                    >
-                      {item.title}
-                    </span>
-                    <span
-                      className={`mt-4 block h-px origin-left bg-gold transition-transform duration-700 ${
-                        on ? "scale-x-100" : "scale-x-0"
-                      }`}
-                    />
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="relative col-span-5">
-            <div className="sticky top-32">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active.n}
-                  initial={reduce ? false : { opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduce ? undefined : { opacity: 0, y: -16 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <p
-                    aria-hidden="true"
-                    className="font-display text-[8vw] italic leading-none tracking-[-0.08em] text-gold/20"
-                  >
-                    {active.n}
-                  </p>
-                  <p className="type-lead mt-4 max-w-[34ch] text-fog">{active.body}</p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
+        <div className="mt-14 md:mt-20">
+          <Slider label={t.services.title}>
+            {t.services.items.map((item) => (
+              <article key={item.n} className="surface px-6 py-10 md:px-12 md:py-14">
+                <p className="type-index text-gold">{item.n}</p>
+                <h3 className="type-h2 mt-6 italic text-bone rtl:not-italic">{item.title}</h3>
+                <p className="type-lead mt-6 max-w-[38ch] text-fog">{item.body}</p>
+              </article>
+            ))}
+          </Slider>
         </div>
       </div>
     </section>

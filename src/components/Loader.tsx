@@ -6,14 +6,14 @@ export function Loader() {
   const reduce = useReducedMotion();
   const [show, setShow] = useState(() => {
     if (typeof window === "undefined") return false;
-    return !sessionStorage.getItem("rasm-loaded");
+    return !sessionStorage.getItem("artbox-loaded");
   });
 
   useEffect(() => {
     if (!show) return;
     const ms = reduce ? 200 : 1400;
     const id = window.setTimeout(() => {
-      sessionStorage.setItem("rasm-loaded", "1");
+      sessionStorage.setItem("artbox-loaded", "1");
       setShow(false);
     }, ms);
     return () => window.clearTimeout(id);
@@ -25,8 +25,8 @@ export function Loader() {
         <motion.div
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-night"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, y: "-8%" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           aria-hidden="true"
         >
           <p className="type-logo text-bone">{site.name}</p>

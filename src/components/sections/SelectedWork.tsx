@@ -18,7 +18,7 @@ export function SelectedWork() {
           <p className="type-index text-gold">
             {t.work.index} — {t.work.label}
           </p>
-          <h2 className="type-display mt-5 max-w-[20ch] whitespace-pre-line">{t.work.title}</h2>
+          <h2 className="type-display mt-5 max-w-[20ch] whitespace-pre-line rtl:max-w-[26ch]">{t.work.title}</h2>
           <p className="type-lead mt-6 max-w-[38ch] text-fog">{t.work.lead}</p>
         </Reveal>
         <Stroke className="mt-10 h-[2px] w-full md:w-2/3" delay={0.1} />
@@ -27,8 +27,8 @@ export function SelectedWork() {
       <article>
         <Exhibition featured={featured} />
 
-        <div className="shell mt-12 grid grid-cols-1 gap-10 pb-4 md:mt-20 md:grid-cols-12 md:gap-12">
-          <div className="md:col-span-8">
+        <div className="shell mt-8 pb-4 md:mt-10">
+          <div className="surface px-6 py-8 md:px-10 md:py-12">
             <ClipReveal>
               <p className="type-index text-gold">{featured.category}</p>
             </ClipReveal>
@@ -87,35 +87,34 @@ function Exhibition({ featured }: { featured: Copy["work"]["featured"] }) {
         href={featured.website}
         target="_blank"
         rel="noopener noreferrer"
-        data-cursor
         aria-label={featured.videoAlt}
         className="group relative block"
-        initial={reduce ? false : { opacity: 0, y: 24 }}
+        initial={reduce ? false : { opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
         onViewportEnter={() => setOpen(true)}
       >
-        <div className="relative overflow-hidden bg-void">
-          <div
-            className={`mask-reveal aspect-[16/10] md:aspect-[21/10] ${open ? "is-open" : ""}`}
-          >
-            <video
-              className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.03]"
-              poster={featured.poster}
-              autoPlay={!reduce}
-              muted
-              loop
-              playsInline
-              preload={reduce ? "none" : "metadata"}
-              aria-hidden="true"
-            >
-              <source src={featured.video} type="video/mp4" />
-            </video>
+        <div className="surface-soft">
+          <div className="relative overflow-hidden rounded-[inherit]">
+            <div className={`mask-reveal aspect-[16/10] md:aspect-[21/10] ${open ? "is-open" : ""}`}>
+              <video
+                className="h-full w-full object-cover"
+                poster={featured.poster}
+                autoPlay={!reduce}
+                muted
+                loop
+                playsInline
+                preload={reduce ? "none" : "metadata"}
+                aria-hidden="true"
+              >
+                <source src={featured.video} type="video/mp4" />
+              </video>
+            </div>
+            <span className="pointer-events-none absolute inset-x-6 bottom-6 type-index text-night md:inset-x-10 md:bottom-8">
+              {featured.name}
+            </span>
           </div>
-          <span className="pointer-events-none absolute inset-x-6 bottom-6 type-index text-gold md:inset-x-10 md:bottom-8">
-            {featured.name}
-          </span>
         </div>
       </motion.a>
     </div>
@@ -124,31 +123,30 @@ function Exhibition({ featured }: { featured: Copy["work"]["featured"] }) {
 
 function FounderReference({ quote }: { quote: Copy["work"]["testimonial"] }) {
   return (
-    <div className="mt-20 md:mt-32">
-      <div className="shell py-6 md:py-10">
+    <div className="mt-8 md:mt-10">
+      <div className="shell">
         <Reveal>
-          <article>
-            <p className="font-display text-[18vw] leading-[0.6] text-gold/30 md:text-[7vw]" aria-hidden="true">
-              “
-            </p>
-            <blockquote className="-mt-6 max-w-[22ch] md:-mt-10 md:max-w-[28ch]">
-              <p className="type-quote text-pretty text-bone">{quote.quote}</p>
+          <article className="surface px-5 py-5 md:px-8 md:py-6">
+            <blockquote className="max-w-[62ch] rtl:max-w-[54ch]">
+              <p className="font-display text-[clamp(20px,2.1vw,28px)] font-normal italic leading-[1.45] tracking-[-0.025em] text-pretty text-bone rtl:not-italic rtl:leading-[1.7] rtl:tracking-normal">
+                {quote.quote}
+              </p>
             </blockquote>
 
-            <div className="mt-10 flex items-center gap-5 md:mt-14">
+            <div className="mt-5 flex items-center gap-3.5">
               <FounderPhoto src={quote.photo} name={quote.name} initials={quote.initials} />
-              <div>
-                <p className="type-meta text-bone">{quote.name}</p>
-                <p className="type-meta mt-2 text-fog">{quote.role}</p>
+              <div className="min-w-0 leading-tight">
+                <p className="text-[15px] font-semibold tracking-[-0.01em] text-bone rtl:tracking-normal">
+                  {quote.name}
+                </p>
+                <p className="mt-1 text-[12px] font-normal text-fog">{quote.role}</p>
               </div>
             </div>
 
-            <div className="mt-10">
-              <p className="type-meta text-gold">{quote.contact}</p>
-              <div className="mt-5 flex flex-wrap gap-8">
-                <ContactAction href={quote.linkedIn} label={quote.linkedInLabel} />
-                <ContactAction href={`mailto:${quote.email}`} label={quote.emailLabel} />
-              </div>
+            <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1">
+              <span className="type-index text-fog">{quote.contact}</span>
+              <ContactAction href={quote.linkedIn} label={quote.linkedInLabel} />
+              <ContactAction href={`mailto:${quote.email}`} label={quote.emailLabel} />
             </div>
           </article>
         </Reveal>
@@ -162,19 +160,19 @@ function FounderPhoto({ src, name, initials }: { src?: string; name: string; ini
   const showImage = Boolean(src) && !failed;
 
   return (
-    <div className="size-14 overflow-hidden bg-void md:size-16">
+    <div className="size-12 shrink-0 overflow-hidden rounded-full border border-line bg-void md:size-[3.25rem]">
       {showImage ? (
         <img
           src={src}
           alt={name}
-          width={64}
-          height={64}
+          width={52}
+          height={52}
           className="size-full object-cover object-center"
           loading="lazy"
           onError={() => setFailed(true)}
         />
       ) : (
-        <div className="flex size-full items-center justify-center type-meta text-fog" aria-hidden="true">
+        <div className="flex size-full items-center justify-center text-[10px] font-medium text-fog" aria-hidden="true">
           {initials}
         </div>
       )}

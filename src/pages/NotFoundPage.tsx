@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Button } from "../components/Button";
 import { ClipReveal } from "../components/Reveal";
 import { useLanguage } from "../context/LanguageProvider";
-import { site } from "../content/site";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -15,17 +14,17 @@ export function NotFoundPage() {
     const previous = document.title;
     document.title = t.notFound.documentTitle;
     return () => {
-      document.title = previous || site.title;
+      document.title = previous || t.notFound.documentTitle;
     };
   }, [t.notFound.documentTitle]);
 
   return (
     <main
       id="main"
-      className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-night pb-24 pt-32 md:pb-28 md:pt-36"
+      className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-night pb-24 pt-28 md:pb-28 lg:pt-24"
     >
       <svg
-        className="pointer-events-none absolute inset-0 h-full w-full text-gold/40"
+        className="pointer-events-none absolute inset-0 h-full w-full text-bone/20"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
         aria-hidden="true"
@@ -63,7 +62,7 @@ export function NotFoundPage() {
         </motion.p>
 
         <ClipReveal className="mt-6" delay={0.05}>
-          <h1 className="type-display max-w-[12ch] text-pretty whitespace-pre-line">{t.notFound.title}</h1>
+          <h1 className="type-display max-w-[12ch] text-pretty whitespace-pre-line rtl:max-w-[18ch]">{t.notFound.title}</h1>
         </ClipReveal>
 
         <motion.p

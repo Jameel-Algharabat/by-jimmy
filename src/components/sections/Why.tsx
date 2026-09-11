@@ -14,19 +14,17 @@ export function Why() {
           </p>
         </Reveal>
         <ClipReveal delay={0.06}>
-          <h2 className="type-display mt-5 max-w-[18ch] whitespace-pre-line">{t.why.title}</h2>
+          <h2 className="type-display mt-5 max-w-[18ch] whitespace-pre-line rtl:max-w-[24ch]">{t.why.title}</h2>
         </ClipReveal>
         <Stroke className="mt-10 h-[2px] w-32" delay={0.08} />
 
-        <div className="mt-16 md:mt-24">
+        <div className="mt-14 grid grid-cols-1 gap-4 md:mt-20 md:grid-cols-3 md:gap-5">
           {t.why.items.map((item, i) => (
-            <Reveal key={item.n} delay={i * 0.06}>
-              <article className="group grid grid-cols-1 gap-4 border-t border-line py-10 md:grid-cols-12 md:items-baseline md:gap-8 md:py-16">
-                <p className="type-index text-fog transition-colors duration-500 group-hover:text-gold md:col-span-2">
-                  {item.n}
-                </p>
-                <h3 className="type-h3 italic md:col-span-5">{item.title}</h3>
-                <p className="max-w-[40ch] text-fog md:col-span-5">{item.body}</p>
+            <Reveal key={item.n} delay={i * 0.06} className="h-full">
+              <article className="surface flex h-full flex-col px-6 py-8 md:px-7 md:py-10">
+                <p className="type-index text-fog">{item.n}</p>
+                <h3 className="type-h3 mt-6 italic rtl:not-italic">{item.title}</h3>
+                <p className="mt-4 max-w-[36ch] text-fog">{item.body}</p>
               </article>
             </Reveal>
           ))}

@@ -1,54 +1,32 @@
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
-import { useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageProvider";
 import { Button } from "../Button";
 import { ClipReveal } from "../Reveal";
 import { HeroDrawing } from "../HeroDrawing";
-import { RasmWordmark } from "../RasmWordmark";
+import { Wordmark } from "../Wordmark";
 
 export function Hero() {
   const { t } = useLanguage();
   const reduce = useReducedMotion();
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 70, damping: 20, mass: 0.45 });
-  const sy = useSpring(my, { stiffness: 70, damping: 20, mass: 0.45 });
-  const x = useTransform(sx, [-0.5, 0.5], [-18, 18]);
-  const y = useTransform(sy, [-0.5, 0.5], [-10, 10]);
-
-  useEffect(() => {
-    if (reduce || !window.matchMedia("(pointer: fine)").matches) return;
-    const onMove = (event: PointerEvent) => {
-      mx.set(event.clientX / window.innerWidth - 0.5);
-      my.set(event.clientY / window.innerHeight - 0.5);
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onMove);
-  }, [mx, my, reduce]);
 
   return (
     <>
-      <section id="top" className="relative bg-night pt-24 md:min-h-svh md:pt-28">
+      <section id="top" className="relative bg-night pt-24 md:min-h-svh md:pt-28 lg:pt-16">
         <HeroDrawing />
 
-        <div className="shell relative z-10 flex flex-col justify-end pb-12 md:min-h-[calc(100svh-7rem)] md:pb-16">
+        <div className="shell relative z-10 flex flex-col justify-end pb-12 md:min-h-[calc(100svh-7rem)] md:pb-16 lg:min-h-[calc(100svh-4rem)]">
           <ClipReveal>
             <p className="type-index text-gold">{t.hero.kicker}</p>
           </ClipReveal>
 
-          <motion.h1
-            className="type-hero mt-8 text-bone md:mt-10"
-            aria-label={t.hero.title}
-            dir="ltr"
-            style={reduce ? undefined : { x, y }}
-          >
-            <RasmWordmark className="block" />
-          </motion.h1>
+          <h1 className="type-hero mt-8 text-bone md:mt-10" aria-label={t.hero.title} dir="ltr">
+            <Wordmark className="block" />
+          </h1>
 
           <div className="mt-10 grid grid-cols-1 items-end gap-10 pt-2 md:mt-14 md:grid-cols-12">
             <div className="md:col-span-7">
               <ClipReveal delay={0.45}>
-                <p className="type-h3 max-w-[18ch] whitespace-pre-line text-bone">{t.hero.line}</p>
+                <p className="type-h3 max-w-[18ch] whitespace-pre-line text-bone rtl:max-w-[24ch]">{t.hero.line}</p>
               </ClipReveal>
               <motion.p
                 className="type-lead mt-6 max-w-[42ch] text-fog"
@@ -84,7 +62,7 @@ export function Hero() {
               <motion.span
                 className="absolute inset-x-0 h-3 bg-gold"
                 animate={reduce ? undefined : { y: ["-100%", "240%"] }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
               />
             </span>
           </motion.div>
