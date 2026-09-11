@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect } from "react";
 import { Button } from "../components/Button";
+import { ClipReveal } from "../components/Reveal";
 import { useLanguage } from "../context/LanguageProvider";
 import { site } from "../content/site";
 
@@ -23,11 +24,27 @@ export function NotFoundPage() {
       id="main"
       className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-night pb-24 pt-32 md:pb-28 md:pt-36"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-line" aria-hidden="true" />
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full text-gold/40"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <motion.path
+          d="M 8 22 C 28 8, 48 40, 78 24 S 96 60, 42 78 S 10 90, 88 96"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="0.2"
+          strokeLinecap="round"
+          initial={reduce ? false : { pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1.8, ease }}
+        />
+      </svg>
 
       <motion.p
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-[6vw] end-[-6vw] select-none font-display text-[48vw] font-extrabold leading-[0.7] tracking-[-0.08em] text-bone/[0.055] md:end-[-3vw] md:text-[26vw]"
+        className="outline-type pointer-events-none absolute -bottom-[6vw] end-[-6vw] select-none font-display text-[48vw] italic leading-[0.7] tracking-[-0.08em] md:end-[-3vw] md:text-[26vw]"
         initial={reduce ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease }}
@@ -45,16 +62,9 @@ export function NotFoundPage() {
           {t.notFound.label}
         </motion.p>
 
-        <div className="mt-6 overflow-hidden">
-          <motion.h1
-            className="type-display max-w-[10ch] text-pretty whitespace-pre-line"
-            initial={reduce ? false : { y: "110%" }}
-            animate={{ y: "0%" }}
-            transition={{ duration: 0.7, delay: 0.05, ease }}
-          >
-            {t.notFound.title}
-          </motion.h1>
-        </div>
+        <ClipReveal className="mt-6" delay={0.05}>
+          <h1 className="type-display max-w-[12ch] text-pretty whitespace-pre-line">{t.notFound.title}</h1>
+        </ClipReveal>
 
         <motion.p
           className="type-lead mt-8 max-w-[36ch] text-fog"

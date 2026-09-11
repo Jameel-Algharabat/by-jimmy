@@ -1,19 +1,15 @@
 import { useLanguage } from "../../context/LanguageProvider";
 import { site } from "../../content/site";
 import { Button } from "../Button";
+import { ContactDrawing } from "../ContactDrawing";
 import { ClipReveal, Reveal } from "../Reveal";
 
 export function StartProject() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-void py-24 md:py-36">
-      <p
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-[8vw] start-0 font-display text-[22vw] font-extrabold leading-none tracking-[-0.08em] text-bone/[0.035]"
-      >
-        {t.contact.label}
-      </p>
+    <section id="contact" className="relative overflow-hidden bg-night py-24 md:py-40">
+      <ContactDrawing />
 
       <div className="shell relative">
         <Reveal>

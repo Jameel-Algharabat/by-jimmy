@@ -7,6 +7,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.dir = "ltr";
     window.localStorage.removeItem("altura-lang");
     window.localStorage.removeItem("by-pixel-lang");
+    window.localStorage.removeItem("golding-lang");
   }, []);
 
   return children;

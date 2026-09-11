@@ -39,19 +39,17 @@ export function ClipReveal({
 
   return (
     <motion.div
-      className={`overflow-hidden ${className ?? ""}`}
+      className={`overflow-hidden py-[0.08em] ${className ?? ""}`}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.25 }}
     >
       <motion.div
         variants={{
           hidden: { y: "110%" },
-          show: {
-            y: "0%",
-            transition: { duration: 1, delay, ease: [0.22, 1, 0.36, 1] },
-          },
+          show: { y: "0%" },
         }}
+        transition={{ duration: 1, delay, ease: [0.22, 1, 0.36, 1] }}
       >
         {children}
       </motion.div>

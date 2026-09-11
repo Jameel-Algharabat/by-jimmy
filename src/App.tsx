@@ -1,9 +1,11 @@
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Cursor } from "./components/Cursor";
 import { Footer } from "./components/Footer";
+import { Loader } from "./components/Loader";
 import { Navigation } from "./components/Navigation";
 import { ScrollManager } from "./components/ScrollManager";
 import { ScrollProgress } from "./components/ScrollProgress";
+import { Thread } from "./components/Thread";
 import { useLanguage } from "./context/LanguageProvider";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
@@ -16,6 +18,8 @@ function SiteLayout() {
       <div className="grain" aria-hidden="true" />
       <ScrollProgress />
       <Cursor />
+      <Thread />
+      <Loader />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:start-5 focus:top-5 focus:z-[90] focus:bg-bone focus:px-4 focus:py-2 focus:text-night"

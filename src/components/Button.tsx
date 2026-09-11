@@ -15,10 +15,10 @@ type ButtonProps = {
 
 const variants = {
   solid:
-    "relative inline-flex items-center justify-center overflow-hidden bg-bone px-8 py-4 text-night before:absolute before:inset-0 before:origin-bottom before:scale-y-0 before:bg-gold before:transition-transform before:duration-500 before:ease-[cubic-bezier(0.22,1,0.36,1)] hover:before:scale-y-100",
+    "btn-ink relative inline-flex items-center justify-center bg-bone px-8 py-4 text-night transition-colors duration-500 hover:bg-gold hover:text-night",
   ghost:
-    "relative inline-flex items-center justify-center border border-bone/20 px-8 py-4 text-bone transition-colors duration-300 hover:border-gold hover:text-gold",
-  line: "relative inline-flex flex-col items-start text-bone after:mt-2 after:block after:h-px after:w-full after:origin-start after:scale-x-0 after:bg-gold after:transition-transform after:duration-500 hover:after:scale-x-100",
+    "btn-ink relative inline-flex items-center justify-center border border-bone/20 px-8 py-4 text-bone transition-colors duration-300 hover:border-gold hover:text-gold",
+  line: "relative inline-flex flex-col items-start text-bone after:mt-2 after:block after:h-px after:w-full after:origin-start after:scale-x-100 after:bg-gold after:transition-transform after:duration-500 md:after:scale-x-0 md:hover:after:scale-x-100",
 };
 
 export function Button({

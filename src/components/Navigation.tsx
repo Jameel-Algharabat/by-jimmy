@@ -3,7 +3,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "../context/LanguageProvider";
 import { site } from "../content/site";
-import { GoldingWordmark } from "./GoldingWordmark";
+import { RasmWordmark } from "./RasmWordmark";
 
 const NAV_IDS = ["work", "services", "about", "contact"] as const;
 
@@ -16,7 +16,7 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -74,22 +74,31 @@ export function Navigation() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-          open ? "bg-void" : scrolled ? "bg-night/85 backdrop-blur-md" : ""
+        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,height] duration-500 ${
+          open ? "bg-night" : scrolled ? "bg-night/80 backdrop-blur-md" : "bg-transparent"
         }`}
       >
-        <div className="shell flex h-[72px] items-center justify-between lg:h-20">
-          <Link to="/" className="type-logo link-line" dir="ltr" onClick={() => setOpen(false)}>
-            <GoldingWordmark />
+        <div
+          className={`shell flex items-center justify-between transition-[height] duration-500 ${
+            scrolled && !open ? "h-14" : "h-[72px] lg:h-20"
+          }`}
+        >
+          <Link
+            to="/"
+            className={`type-logo link-line transition-transform duration-500 ${scrolled ? "scale-95" : ""}`}
+            dir="ltr"
+            onClick={() => setOpen(false)}
+          >
+            <RasmWordmark />
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-10 lg:flex" aria-label="Primary">
             {links.map((link) => (
               <NavAnchor
                 key={link.id}
                 id={link.id}
                 pathname={pathname}
-                className={`type-nav link-line ${isActive(link.id) ? "text-bone" : "text-bone/70"}`}
+                className={`type-nav link-line ${isActive(link.id) ? "text-gold" : "text-bone/70"}`}
                 dataActive={isActive(link.id)}
               >
                 {link.label}
@@ -99,7 +108,7 @@ export function Navigation() {
 
           <button
             type="button"
-            className="type-nav text-bone lg:hidden"
+            className="relative type-nav text-bone lg:hidden"
             aria-expanded={open}
             aria-controls="site-menu"
             onClick={() => setOpen((v) => !v)}
@@ -107,19 +116,44 @@ export function Navigation() {
             {open ? t.nav.close : t.nav.menu}
           </button>
         </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px overflow-hidden">
+          <span
+            className={`block h-px origin-left bg-line transition-transform duration-700 ${
+              scrolled || open ? "scale-x-100" : "scale-x-0"
+            }`}
+          />
+        </div>
       </header>
 
       <AnimatePresence>
         {open ? (
           <motion.div
             id="site-menu"
-            className="fixed inset-0 z-40 bg-void lg:hidden"
-            initial={reduce ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.45 }}
+            className="fixed inset-0 z-40 bg-night lg:hidden"
+            initial={reduce ? false : { clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={reduce ? undefined : { clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="shell flex h-dvh flex-col justify-between py-28">
+            <svg
+              className="pointer-events-none absolute inset-0 h-full w-full text-gold/50"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <motion.path
+                d="M 8 18 C 28 8, 42 36, 72 22 S 92 48, 48 62 S 12 82, 88 92"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="0.18"
+                strokeLinecap="round"
+                initial={reduce ? false : { pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 1.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </svg>
+
+            <div className="shell relative flex h-dvh flex-col justify-between py-28">
               <nav className="flex flex-col" aria-label="Mobile">
                 {links.map((link, i) => (
                   <motion.div
@@ -127,7 +161,7 @@ export function Navigation() {
                     className="overflow-hidden"
                     initial={reduce ? false : { y: 48, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.08 + i * 0.07, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ delay: 0.16 + i * 0.07, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <NavAnchor
                       id={link.id}
@@ -136,7 +170,7 @@ export function Navigation() {
                       className="group flex items-baseline justify-between gap-6 border-b border-line py-4"
                     >
                       <span
-                        className={`font-display text-[11.5vw] font-bold leading-[0.85] tracking-[-0.05em] ${
+                        className={`font-display text-[12vw] italic leading-[0.9] tracking-[-0.04em] ${
                           isActive(link.id) ? "text-gold" : "text-bone"
                         }`}
                       >
@@ -152,7 +186,7 @@ export function Navigation() {
                   {site.email}
                 </a>
                 <p className="type-logo" dir="ltr">
-                  <GoldingWordmark />
+                  <RasmWordmark />
                 </p>
               </div>
             </div>

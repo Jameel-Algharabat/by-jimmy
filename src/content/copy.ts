@@ -10,10 +10,10 @@ export const copy = {
     close: "Close",
   },
   hero: {
-    kicker: "Digital studio for intelligent work",
-    title: "GOLDING",
-    line: "Work that holds\nits value.",
-    lead: "GOLDING designs and engineers websites, products, and intelligent systems. Strategy, design, and engineering — made with precision, and built to last.",
+    kicker: "Creative technology studio",
+    title: "RASM",
+    line: "Designing what\ncomes next.",
+    lead: "RASM designs and builds websites, digital experiences, and AI-powered systems for ambitious companies. Strategy, design, and engineering — made with precision, and built to last.",
     primary: "Start a project",
     secondary: "See the work",
     roles: ["Strategy", "Design", "Engineering", "Intelligence"],
@@ -65,33 +65,33 @@ export const copy = {
     items: [
       {
         n: "01",
-        title: "Web Design",
-        body: "Interfaces with a point of view. We design structure, type, and behavior so the brand feels considered on every screen — not adapted after the fact.",
+        title: "Websites",
+        body: "Premium websites and digital experiences designed around clarity, brand, and conversion.",
       },
       {
         n: "02",
-        title: "Web Development",
-        body: "The design, built as a product. Fast, durable engineering with room to grow — not a theme with the logo swapped.",
+        title: "AI Systems",
+        body: "AI-powered workflows, copilots, automation, and custom digital systems.",
       },
       {
         n: "03",
-        title: "Landing Pages",
-        body: "A single surface with a single job. Focused, quick to grasp, and written to convert — nothing ornamental, nothing extra.",
+        title: "Product Design",
+        body: "Digital products and interfaces designed around real users and business goals.",
       },
       {
         n: "04",
-        title: "After Launch",
-        body: "The product does not freeze on ship day. Updates, refinements, and reliability so the experience stays sharp as the business moves.",
+        title: "Brand & Digital Identity",
+        body: "Distinctive identities and digital systems for ambitious companies.",
       },
     ],
   },
   about: {
     index: "03",
     label: "About",
-    name: "GOLDING",
-    aside: "Digital studio · Intelligence in the craft",
-    title: "GOLDING exists to make digital work that holds its value.",
-    p1: "We combine strategy, design, engineering, and human judgment. Intelligent tools sit inside the process — research, exploration, production — so the work is sharper, not louder.",
+    name: "RASM",
+    aside: "RASM.STUDIO · Drawing, design, creation",
+    title: "RASM exists to make digital work that holds its value.",
+    p1: "The name comes from rasm — drawing, design, creation. We combine strategy, design, engineering, and human judgment. Intelligent tools sit inside the process — research, exploration, production — so the work is sharper, not louder.",
     p2: "The collaboration is direct. You speak with the people making the product. Decisions stay close. The work is made to represent a business — local or international — and to help people hire you or buy from you.",
     p3: "We are a lean studio. There is no account layer. If the work is ours to make, we make it. Then we stay with it — testing, refining, keeping the product exact as the business grows.",
   },
@@ -124,7 +124,7 @@ export const copy = {
   },
   why: {
     index: "05",
-    label: "Why GOLDING",
+    label: "Why RASM",
     title: "Quiet confidence.\nExacting work.",
     items: [
       {
@@ -148,19 +148,19 @@ export const copy = {
     index: "06",
     label: "Contact",
     title: "Have a project in mind?\nLet’s talk about it.",
-    book: "Book a 30-min Discovery Call",
+    book: "Book a 30-minute discovery call",
     bookAria: "Book a 30-minute discovery call, opens in a new tab",
   },
   footer: {
-    email: "hello@golding.com",
-    line: "Work that holds its value.",
+    email: "hello@rasm.studio",
+    line: "RASM.STUDIO",
   },
   notFound: {
     label: "404",
     title: "This page\ndoesn’t exist.",
     lead: "The page you’re looking for may have moved, or the link may be incorrect.",
     home: "Back to Home",
-    documentTitle: "Page not found | GOLDING",
+    documentTitle: "Page not found | RASM.STUDIO",
   },
 } as const;
 

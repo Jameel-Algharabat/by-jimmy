@@ -4,6 +4,7 @@ import type { Copy } from "../../content/copy";
 import { useLanguage } from "../../context/LanguageProvider";
 import { Button } from "../Button";
 import { ClipReveal, Reveal } from "../Reveal";
+import { Stroke } from "../Stroke";
 
 export function SelectedWork() {
   const { t } = useLanguage();
@@ -12,7 +13,7 @@ export function SelectedWork() {
 
   return (
     <section id="work" className="bg-night pb-8 pt-24 md:pt-36">
-      <div className="shell mb-14 md:mb-20">
+      <div className="shell mb-10 md:mb-16">
         <Reveal>
           <p className="type-index text-gold">
             {t.work.index} — {t.work.label}
@@ -20,12 +21,13 @@ export function SelectedWork() {
           <h2 className="type-display mt-5 max-w-[20ch] whitespace-pre-line">{t.work.title}</h2>
           <p className="type-lead mt-6 max-w-[38ch] text-fog">{t.work.lead}</p>
         </Reveal>
+        <Stroke className="mt-10 h-[2px] w-full md:w-2/3" delay={0.1} />
       </div>
 
       <article>
-        <DeviceShowcase featured={featured} visit={t.work.visit} />
+        <Exhibition featured={featured} />
 
-        <div className="shell mt-14 grid grid-cols-1 gap-10 pb-4 md:mt-16 md:grid-cols-12 md:gap-12">
+        <div className="shell mt-12 grid grid-cols-1 gap-10 pb-4 md:mt-20 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-8">
             <ClipReveal>
               <p className="type-index text-gold">{featured.category}</p>
@@ -40,18 +42,15 @@ export function SelectedWork() {
               </p>
             </Reveal>
             <Reveal delay={0.12}>
-              <ul className="mt-8 flex flex-wrap gap-2">
+              <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
                 {featured.badges.map((badge) => (
-                  <li
-                    key={badge}
-                    className="type-meta rounded-full border border-line bg-ash/80 px-4 py-2 text-fog"
-                  >
+                  <li key={badge} className="type-meta text-fog">
                     {badge}
                   </li>
                 ))}
               </ul>
               <div className="mt-10">
-                <Button href={featured.website}>
+                <Button href={featured.website} variant="ghost">
                   {t.work.visit} — {featured.websiteLabel}
                 </Button>
               </div>
@@ -78,14 +77,9 @@ function EmphasizeBrand({ text, brand }: { text: string; brand: string }) {
   );
 }
 
-function DeviceShowcase({
-  featured,
-  visit,
-}: {
-  featured: Copy["work"]["featured"];
-  visit: string;
-}) {
+function Exhibition({ featured }: { featured: Copy["work"]["featured"] }) {
   const reduce = useReducedMotion();
+  const [open, setOpen] = useState(reduce ?? false);
 
   return (
     <div className="shell">
@@ -95,40 +89,33 @@ function DeviceShowcase({
         rel="noopener noreferrer"
         data-cursor
         aria-label={featured.videoAlt}
-        className="group mx-auto block max-w-4xl"
-        initial={reduce ? false : { opacity: 0, y: 28 }}
+        className="group relative block"
+        initial={reduce ? false : { opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        onViewportEnter={() => setOpen(true)}
       >
-        <div className="rounded-2xl bg-gradient-to-br from-bone/30 via-line to-gold/50 p-px shadow-2xl shadow-black/50 transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.012]">
-          <div className="overflow-hidden rounded-[15px] bg-void ring-1 ring-bone/5">
-            <div className="flex items-center gap-3 border-b border-white/5 px-4 py-2.5">
-              <span className="flex gap-1.5" aria-hidden="true">
-                <span className="size-2 rounded-full bg-[#3A3733]" />
-                <span className="size-2 rounded-full bg-[#3A3733]" />
-                <span className="size-2 rounded-full bg-gold/70" />
-              </span>
-              <span className="min-w-0 flex-1 truncate rounded-full bg-ash px-3 py-1 text-center type-meta text-fog">
-                {featured.websiteLabel}
-              </span>
-              <span className="hidden type-meta text-fog/60 sm:inline">{visit} →</span>
-            </div>
-            <div className="relative aspect-video overflow-hidden bg-ash">
-              <video
-                className="h-full w-full object-cover"
-                poster={featured.poster}
-                autoPlay={!reduce}
-                muted
-                loop
-                playsInline
-                preload={reduce ? "none" : "metadata"}
-                aria-hidden="true"
-              >
-                <source src={featured.video} type="video/mp4" />
-              </video>
-            </div>
+        <div className="relative overflow-hidden bg-void">
+          <div
+            className={`mask-reveal aspect-[16/10] md:aspect-[21/10] ${open ? "is-open" : ""}`}
+          >
+            <video
+              className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.03]"
+              poster={featured.poster}
+              autoPlay={!reduce}
+              muted
+              loop
+              playsInline
+              preload={reduce ? "none" : "metadata"}
+              aria-hidden="true"
+            >
+              <source src={featured.video} type="video/mp4" />
+            </video>
           </div>
+          <span className="pointer-events-none absolute inset-x-6 bottom-6 type-index text-gold md:inset-x-10 md:bottom-8">
+            {featured.name}
+          </span>
         </div>
       </motion.a>
     </div>
@@ -137,27 +124,30 @@ function DeviceShowcase({
 
 function FounderReference({ quote }: { quote: Copy["work"]["testimonial"] }) {
   return (
-    <div className="mt-20 border-t border-line md:mt-28">
-      <div className="shell py-16 md:py-24">
+    <div className="mt-20 md:mt-32">
+      <div className="shell py-6 md:py-10">
         <Reveal>
-          <article className="mx-auto max-w-3xl rounded-2xl border border-bone/10 bg-neutral-900/50 p-7 shadow-2xl shadow-black/30 backdrop-blur-md md:p-10">
-            <blockquote>
-              <p className="type-h3 text-pretty text-bone">“{quote.quote}”</p>
+          <article>
+            <p className="font-display text-[18vw] leading-[0.6] text-gold/30 md:text-[7vw]" aria-hidden="true">
+              “
+            </p>
+            <blockquote className="-mt-6 max-w-[22ch] md:-mt-10 md:max-w-[28ch]">
+              <p className="type-quote text-pretty text-bone">{quote.quote}</p>
             </blockquote>
 
-            <div className="mt-8 flex items-center gap-4 border-t border-white/5 pt-7">
+            <div className="mt-10 flex items-center gap-5 md:mt-14">
               <FounderPhoto src={quote.photo} name={quote.name} initials={quote.initials} />
               <div>
-                <p className="font-display text-lg font-semibold tracking-tight text-bone">{quote.name}</p>
-                <p className="type-meta mt-1 text-fog">{quote.role}</p>
+                <p className="type-meta text-bone">{quote.name}</p>
+                <p className="type-meta mt-2 text-fog">{quote.role}</p>
               </div>
             </div>
 
-            <div className="mt-7">
+            <div className="mt-10">
               <p className="type-meta text-gold">{quote.contact}</p>
-              <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-                <ContactAction href={quote.linkedIn} label={quote.linkedInLabel} icon="linkedin" />
-                <ContactAction href={`mailto:${quote.email}`} label={quote.emailLabel} icon="email" />
+              <div className="mt-5 flex flex-wrap gap-8">
+                <ContactAction href={quote.linkedIn} label={quote.linkedInLabel} />
+                <ContactAction href={`mailto:${quote.email}`} label={quote.emailLabel} />
               </div>
             </div>
           </article>
@@ -172,36 +162,27 @@ function FounderPhoto({ src, name, initials }: { src?: string; name: string; ini
   const showImage = Boolean(src) && !failed;
 
   return (
-    <div className="rounded-full bg-gradient-to-br from-gold to-bone/40 p-[2px]">
-      <div className="size-16 overflow-hidden rounded-full bg-night md:size-[4.5rem]">
-        {showImage ? (
-          <img
-            src={src}
-            alt={name}
-            width={72}
-            height={72}
-            className="size-full object-cover object-center"
-            onError={() => setFailed(true)}
-          />
-        ) : (
-          <div className="flex size-full items-center justify-center type-meta text-bone" aria-hidden="true">
-            {initials}
-          </div>
-        )}
-      </div>
+    <div className="size-14 overflow-hidden bg-void md:size-16">
+      {showImage ? (
+        <img
+          src={src}
+          alt={name}
+          width={64}
+          height={64}
+          className="size-full object-cover object-center"
+          loading="lazy"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <div className="flex size-full items-center justify-center type-meta text-fog" aria-hidden="true">
+          {initials}
+        </div>
+      )}
     </div>
   );
 }
 
-function ContactAction({
-  href,
-  label,
-  icon,
-}: {
-  href: string;
-  label: string;
-  icon: "linkedin" | "email";
-}) {
+function ContactAction({ href, label }: { href: string; label: string }) {
   const external = href.startsWith("http");
 
   return (
@@ -209,27 +190,9 @@ function ContactAction({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className="group inline-flex flex-1 items-center justify-center gap-2.5 rounded-xl border border-bone/10 bg-night/70 px-5 py-3.5 text-bone transition-all duration-300 hover:border-gold/70 hover:bg-gold/10 hover:shadow-[0_0_24px_-6px_rgba(197,164,106,0.45)]"
+      className="type-nav link-line text-bone"
     >
-      {icon === "linkedin" ? <LinkedInIcon /> : <MailIcon />}
-      <span className="type-btn">{label}</span>
+      {label}
     </a>
-  );
-}
-
-function LinkedInIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z" />
-    </svg>
-  );
-}
-
-function MailIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <path d="m4 7 8 6 8-6" />
-    </svg>
   );
 }

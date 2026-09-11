@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { useLanguage } from "../../context/LanguageProvider";
 import { Reveal } from "../Reveal";
+import { Stroke } from "../Stroke";
 
 export function Services() {
   const { t } = useLanguage();
@@ -10,7 +11,7 @@ export function Services() {
   const active = t.services.items[open];
 
   return (
-    <section id="services" className="border-t border-line bg-night py-24 md:py-36">
+    <section id="services" className="bg-night py-24 md:py-36">
       <div className="shell">
         <Reveal>
           <p className="type-index text-gold">
@@ -18,6 +19,7 @@ export function Services() {
           </p>
           <h2 className="type-display mt-5">{t.services.title}</h2>
         </Reveal>
+        <Stroke className="mt-10 h-[2px] w-24" />
 
         <div className="mt-14 md:hidden">
           {t.services.items.map((item, i) => {
@@ -30,9 +32,9 @@ export function Services() {
                   onClick={() => setOpen(i)}
                   aria-expanded={on}
                 >
-                  <span className="type-index text-fog">{item.n}</span>
+                  <span className="type-index text-gold">{item.n}</span>
                   <span
-                    className={`flex-1 font-display text-[8vw] font-bold leading-[0.9] tracking-[-0.04em] ${
+                    className={`flex-1 font-display text-[9vw] italic leading-[0.95] tracking-[-0.04em] ${
                       on ? "text-bone" : "text-fog"
                     }`}
                   >
@@ -66,18 +68,25 @@ export function Services() {
                 <button
                   key={item.n}
                   type="button"
-                  className="flex w-full items-baseline gap-8 border-t border-line py-8 text-start last:border-b"
+                  className="group flex w-full items-baseline gap-8 border-t border-line py-9 text-start last:border-b"
                   onMouseEnter={() => setOpen(i)}
                   onFocus={() => setOpen(i)}
                   aria-pressed={on}
                 >
                   <span className={`type-index ${on ? "text-gold" : "text-fog"}`}>{item.n}</span>
-                  <span
-                    className={`font-display text-[4vw] font-bold leading-[0.9] tracking-[-0.045em] transition-colors duration-500 ${
-                      on ? "text-bone" : "text-fog/55"
-                    }`}
-                  >
-                    {item.title}
+                  <span className="relative flex-1">
+                    <span
+                      className={`block font-display text-[3.6vw] italic leading-[0.95] tracking-[-0.045em] transition-colors duration-500 ${
+                        on ? "text-bone" : "text-fog/55"
+                      }`}
+                    >
+                      {item.title}
+                    </span>
+                    <span
+                      className={`mt-4 block h-px origin-left bg-gold transition-transform duration-700 ${
+                        on ? "scale-x-100" : "scale-x-0"
+                      }`}
+                    />
                   </span>
                 </button>
               );
@@ -96,7 +105,7 @@ export function Services() {
                 >
                   <p
                     aria-hidden="true"
-                    className="font-display text-[8vw] font-extrabold leading-none tracking-[-0.08em] text-bone/[0.06]"
+                    className="font-display text-[8vw] italic leading-none tracking-[-0.08em] text-gold/20"
                   >
                     {active.n}
                   </p>

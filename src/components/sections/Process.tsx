@@ -8,6 +8,7 @@ import {
 import { useRef, useState } from "react";
 import { useLanguage } from "../../context/LanguageProvider";
 import { Reveal } from "../Reveal";
+import { Stroke } from "../Stroke";
 
 export function Process() {
   const { t } = useLanguage();
@@ -19,12 +20,13 @@ export function Process() {
           {t.process.index} — {t.process.label}
         </p>
         <h2 className="type-display mt-5 whitespace-pre-line">{t.process.title}</h2>
+        <Stroke className="mt-8 h-[2px] w-20" />
         <div className="relative mt-12 border-s border-line ps-6">
           {t.process.steps.map((step) => (
             <div key={step.n} className="relative pb-12 last:pb-0">
               <span className="absolute top-1.5 -start-[29px] h-2 w-2 rounded-full bg-gold" />
               <p className="type-index text-gold">{step.n}</p>
-              <h3 className="type-h3 mt-3">{step.title}</h3>
+              <h3 className="type-h3 mt-3 italic">{step.title}</h3>
               <p className="mt-3 max-w-[32ch] text-fog">{step.body}</p>
             </div>
           ))}
@@ -69,7 +71,7 @@ function DesktopProcess() {
                   <motion.p
                     key={`${step.n}-n`}
                     aria-hidden="true"
-                    className="font-display text-[16vw] font-extrabold leading-[0.75] tracking-[-0.08em] text-bone/[0.08]"
+                    className="font-display text-[16vw] italic leading-[0.75] tracking-[-0.08em] text-gold/20"
                     initial={reduce ? false : { y: 40, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={reduce ? undefined : { y: -32, opacity: 0 }}
@@ -101,7 +103,9 @@ function DesktopProcess() {
               {t.process.steps.map((item, i) => (
                 <span
                   key={item.n}
-                  className={`h-px flex-1 transition-colors duration-500 ${i <= active ? "bg-gold" : "bg-line"}`}
+                  className={`h-px flex-1 origin-left transition-colors duration-500 ${
+                    i <= active ? "bg-gold" : "bg-line"
+                  }`}
                 />
               ))}
             </div>
