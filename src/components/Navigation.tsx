@@ -6,7 +6,7 @@ import { site } from "../content/site";
 import { Arrow } from "./Arrow";
 import { LanguageSwitch } from "./LanguageSwitch";
 import { EASE } from "../motion";
-import { Wordmark } from "./Wordmark";
+import { Logo } from "./Logo";
 
 const NAV_IDS = ["work", "capabilities", "about", "contact"] as const;
 
@@ -126,8 +126,13 @@ export function Navigation() {
         className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,color,backdrop-filter] duration-300 ${headerSurface}`}
       >
         <div className="wrap flex h-[var(--header-h)] items-center justify-between gap-6">
-          <Link to="/" className={fg} onClick={() => setOpen(false)} aria-label={site.name}>
-            <Wordmark />
+          <Link
+            to="/"
+            className={`${fg} -ms-1 flex items-center p-1 transition-opacity duration-200 hover:opacity-70`}
+            onClick={() => setOpen(false)}
+            aria-label={site.name}
+          >
+            <Logo className="size-7 md:size-8" />
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex" aria-label={t.footer.navLabel}>
