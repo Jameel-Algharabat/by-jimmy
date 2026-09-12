@@ -1,3 +1,4 @@
+import { useBooking } from "../../context/booking";
 import { useLanguage } from "../../context/LanguageProvider";
 import { site } from "../../content/site";
 import { Arrow } from "../Arrow";
@@ -6,6 +7,7 @@ import { Lines, Reveal } from "../Reveal";
 
 export function Contact() {
   const { t } = useLanguage();
+  const { openBooking } = useBooking();
 
   return (
     <section id="contact" className="bg-paper py-28 md:py-44" aria-label={t.contact.label}>
@@ -29,7 +31,7 @@ export function Contact() {
               <p className="t-lead mt-8 max-w-[42ch] text-mute md:mt-10">{t.contact.lead}</p>
             </Reveal>
             <Reveal delay={0.22} className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center md:mt-12">
-              <Button href={site.bookingUrl} ariaLabel={t.contact.bookAria} arrow className="w-full sm:w-auto">
+              <Button onClick={openBooking} ariaLabel={t.contact.bookAria} arrow className="w-full sm:w-auto">
                 {t.contact.book}
               </Button>
               <a href={`mailto:${site.email}`} className="group inline-flex items-center gap-2 t-nav text-ink">

@@ -4,6 +4,7 @@ import { Loader } from "./components/Loader";
 import { Navigation } from "./components/Navigation";
 import { ScrollManager } from "./components/ScrollManager";
 import { ScrollProgress } from "./components/ScrollProgress";
+import { BookingProvider } from "./context/BookingProvider";
 import { useLanguage } from "./context/LanguageProvider";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
@@ -12,7 +13,7 @@ function SiteLayout() {
   const { t } = useLanguage();
 
   return (
-    <>
+    <BookingProvider>
       <ScrollProgress />
       <Loader />
       <a
@@ -24,7 +25,7 @@ function SiteLayout() {
       <Navigation />
       <Outlet />
       <Footer />
-    </>
+    </BookingProvider>
   );
 }
 

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useBooking } from "../context/booking";
 import { useLanguage } from "../context/LanguageProvider";
 import { site } from "../content/site";
 import { Arrow } from "./Arrow";
@@ -12,6 +13,7 @@ const NAV_IDS = ["work", "capabilities", "about", "contact"] as const;
 
 export function Navigation() {
   const { t } = useLanguage();
+  const { openBooking } = useBooking();
   const { pathname } = useLocation();
   const reduce = useReducedMotion();
   const [open, setOpen] = useState(false);
@@ -151,14 +153,14 @@ export function Navigation() {
 
           <div className="flex items-center gap-5 lg:gap-7">
             <LanguageSwitch inverse={onDark} />
-            <a
-              href={site.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={openBooking}
+              aria-label={t.contact.bookAria}
               className={`btn hidden !min-h-10 !px-4 !text-[13px] lg:inline-flex ${onDark ? "btn-inverse" : "btn-primary"}`}
             >
               {t.nav.book}
-            </a>
+            </button>
             <button
               type="button"
               className={`t-nav flex items-center gap-2 lg:hidden ${fg}`}
@@ -219,15 +221,18 @@ export function Navigation() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.36, duration: 0.5, ease: EASE }}
               >
-                <a
-                  href={site.bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
                   className="btn btn-primary w-full"
+                  aria-label={t.contact.bookAria}
+                  onClick={() => {
+                    setOpen(false);
+                    openBooking();
+                  }}
                 >
                   <span>{t.hero.primary}</span>
-                  <Arrow direction="external" />
-                </a>
+                  <Arrow />
+                </button>
                 <div className="flex items-center justify-between gap-4">
                   <a href={`mailto:${site.email}`} className="t-small text-mute hover:text-ink" dir="ltr">
                     {site.email}

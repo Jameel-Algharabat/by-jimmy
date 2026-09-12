@@ -429,6 +429,25 @@
     }
   }
 
+  /* ---------- Square spinner ----------
+     A stationary rounded-square stroke whose gap travels the perimeter.
+     The rect is normalised to pathLength=100, so the dash pattern and the
+     offset are in percent and the loop closes exactly at -100. */
+  .spinner-track {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-dasharray: 74 26;
+    stroke-dashoffset: 0;
+    animation: spinner-travel 1.5s linear infinite;
+  }
+
+  @keyframes spinner-travel {
+    to {
+      stroke-dashoffset: -100;
+    }
+  }
+
   .dot-live {
     animation: dot-live 3.6s ease-in-out infinite;
   }

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useBooking } from "../context/booking";
 import { useLanguage } from "../context/LanguageProvider";
 import { site } from "../content/site";
 import { LanguageSwitch } from "./LanguageSwitch";
@@ -6,6 +7,7 @@ import { Wordmark } from "./Wordmark";
 
 export function Footer() {
   const { t } = useLanguage();
+  const { openBooking } = useBooking();
   const year = new Date().getFullYear();
 
   const links = [
@@ -51,9 +53,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href={site.bookingUrl} target="_blank" rel="noopener noreferrer" className="t-small u-line text-ink">
+                <button type="button" onClick={openBooking} className="t-small u-line text-ink">
                   {t.nav.book}
-                </a>
+                </button>
               </li>
             </ul>
           </div>

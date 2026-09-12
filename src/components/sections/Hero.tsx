@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { useBooking } from "../../context/booking";
 import { useLanguage } from "../../context/LanguageProvider";
-import { site } from "../../content/site";
 import { Arrow } from "../Arrow";
 import { BoxGrid } from "../BoxGrid";
 import { Button } from "../Button";
@@ -9,6 +9,7 @@ import { ClipReveal, Lines } from "../Reveal";
 
 export function Hero() {
   const { t } = useLanguage();
+  const { openBooking } = useBooking();
   const reduce = useReducedMotion();
 
   const fade = (delay: number) => ({
@@ -50,7 +51,7 @@ export function Hero() {
             className="col-span-12 flex flex-col items-start gap-3 sm:flex-row sm:items-center md:col-span-5 md:justify-end lg:col-span-6 lg:col-start-7"
             {...fade(0.5)}
           >
-            <Button href={site.bookingUrl} ariaLabel={t.contact.bookAria} arrow className="w-full sm:w-auto">
+            <Button onClick={openBooking} ariaLabel={t.contact.bookAria} arrow className="w-full sm:w-auto">
               {t.hero.primary}
             </Button>
             <Button href="#work" variant="secondary" arrow className="w-full sm:w-auto">
