@@ -1,23 +1,24 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { Arrow } from "./Arrow";
 
 type ButtonProps = {
   children: ReactNode;
   href?: string;
   onClick?: () => void;
   type?: "button" | "submit";
-  variant?: "solid" | "ghost" | "line";
+  variant?: "primary" | "secondary" | "inverse" | "ghost-inverse";
   className?: string;
   disabled?: boolean;
   ariaLabel?: string;
+  arrow?: boolean;
 };
 
-const variants = {
-  solid:
-    "btn-ink relative inline-flex items-center justify-center bg-bone px-8 py-4 text-night transition-colors duration-500 hover:bg-gold-highlight hover:text-night",
-  ghost:
-    "btn-ink relative inline-flex items-center justify-center border border-bone/20 px-8 py-4 text-bone transition-colors duration-300 hover:border-gold hover:text-gold",
-  line: "relative inline-flex flex-col items-start text-bone after:mt-2 after:block after:h-px after:w-full after:origin-start after:scale-x-100 after:bg-gold after:transition-transform after:duration-500 md:after:scale-x-0 md:hover:after:scale-x-100",
+const variants: Record<NonNullable<ButtonProps["variant"]>, string> = {
+  primary: "btn btn-primary",
+  secondary: "btn btn-secondary",
+  inverse: "btn btn-inverse",
+  "ghost-inverse": "btn btn-ghost-inverse",
 };
 
 export function Button({
@@ -25,13 +26,19 @@ export function Button({
   href,
   onClick,
   type = "button",
-  variant = "solid",
+  variant = "primary",
   className = "",
   disabled,
   ariaLabel,
+  arrow = false,
 }: ButtonProps) {
-  const classes = `type-btn max-w-full ${variants[variant]} ${className}`;
-  const inner = <span className="relative z-10">{children}</span>;
+  const classes = `group ${variants[variant]} ${className}`;
+  const inner = (
+    <>
+      <span>{children}</span>
+      {arrow ? <Arrow className="arrow-shift" /> : null}
+    </>
+  );
 
   if (href) {
     if (href.startsWith("#")) {
@@ -41,14 +48,15 @@ export function Button({
         </a>
       );
     }
-    if (href.startsWith("http")) {
+    if (href.startsWith("http") || href.startsWith("mailto:")) {
+      const external = href.startsWith("http");
       return (
         <a
           href={href}
           className={classes}
           onClick={onClick}
-          target="_blank"
-          rel="noopener noreferrer"
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener noreferrer" : undefined}
           aria-label={ariaLabel}
         >
           {inner}
@@ -66,5 +74,33 @@ export function Button({
     <button type={type} className={classes} onClick={onClick} disabled={disabled} aria-label={ariaLabel}>
       {inner}
     </button>
+  );
+}
+
+export function TextLink({
+  href,
+  children,
+  className = "",
+  external,
+  ariaLabel,
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+  external?: boolean;
+  ariaLabel?: string;
+}) {
+  const isExternal = external ?? href.startsWith("http");
+  return (
+    <a
+      href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      aria-label={ariaLabel}
+      className={`group inline-flex items-center gap-2 t-nav text-ink ${className}`}
+    >
+      <span className="u-line">{children}</span>
+      <Arrow className="arrow-shift" direction={isExternal ? "external" : "forward"} />
+    </a>
   );
 }

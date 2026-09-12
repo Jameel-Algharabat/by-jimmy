@@ -1,14 +1,10 @@
-import { motion, useReducedMotion } from "framer-motion";
 import { useEffect } from "react";
 import { Button } from "../components/Button";
-import { ClipReveal } from "../components/Reveal";
+import { Lines, Reveal } from "../components/Reveal";
 import { useLanguage } from "../context/LanguageProvider";
-
-const ease = [0.22, 1, 0.36, 1] as const;
 
 export function NotFoundPage() {
   const { t } = useLanguage();
-  const reduce = useReducedMotion();
 
   useEffect(() => {
     const previous = document.title;
@@ -19,71 +15,26 @@ export function NotFoundPage() {
   }, [t.notFound.documentTitle]);
 
   return (
-    <main
-      id="main"
-      className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-night pb-24 pt-28 md:pb-28 lg:pt-24"
-    >
-      <svg
-        className="pointer-events-none absolute inset-0 h-full w-full text-bone/20"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <motion.path
-          d="M 8 22 C 28 8, 48 40, 78 24 S 96 60, 42 78 S 10 90, 88 96"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.2"
-          strokeLinecap="round"
-          initial={reduce ? false : { pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.8, ease }}
-        />
-      </svg>
-
-      <motion.p
-        aria-hidden="true"
-        className="outline-type pointer-events-none absolute -bottom-[6vw] end-[-6vw] select-none font-display text-[48vw] italic leading-[0.7] tracking-[-0.08em] md:end-[-3vw] md:text-[26vw]"
-        initial={reduce ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease }}
-      >
-        {t.notFound.label}
-      </motion.p>
-
-      <div className="shell relative">
-        <motion.p
-          className="type-index text-gold"
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease }}
-        >
-          {t.notFound.label}
-        </motion.p>
-
-        <ClipReveal className="mt-6" delay={0.05}>
-          <h1 className="type-display max-w-[12ch] text-pretty whitespace-pre-line rtl:max-w-[18ch]">{t.notFound.title}</h1>
-        </ClipReveal>
-
-        <motion.p
-          className="type-lead mt-8 max-w-[36ch] text-fog"
-          initial={reduce ? false : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.12, ease }}
-        >
-          {t.notFound.lead}
-        </motion.p>
-
-        <motion.div
-          className="mt-12 max-w-full md:mt-16"
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2, ease }}
-        >
-          <Button href="/" className="min-h-12 px-8 py-4">
-            {t.notFound.home}
-          </Button>
-        </motion.div>
+    <main id="main" className="flex min-h-svh flex-col justify-center bg-paper pb-24 pt-[calc(var(--header-h)+40px)]">
+      <div className="wrap">
+        <div className="grid-12 border-t border-rule pt-6 md:pt-8">
+          <Reveal className="col-span-12 md:col-span-3">
+            <p className="t-label t-num text-mute">{t.notFound.label}</p>
+          </Reveal>
+          <div className="col-span-12 mt-8 md:col-span-9 md:mt-0">
+            <h1>
+              <Lines text={t.notFound.title} className="t-display block max-w-[12ch] text-ink rtl:max-w-[16ch]" />
+            </h1>
+            <Reveal delay={0.14}>
+              <p className="t-lead mt-8 max-w-[40ch] text-mute">{t.notFound.lead}</p>
+            </Reveal>
+            <Reveal delay={0.2} className="mt-10">
+              <Button href="/" arrow>
+                {t.notFound.home}
+              </Button>
+            </Reveal>
+          </div>
+        </div>
       </div>
     </main>
   );

@@ -1,93 +1,81 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageProvider";
+import { site } from "../../content/site";
+import { Arrow } from "../Arrow";
+import { BoxGrid } from "../BoxGrid";
 import { Button } from "../Button";
-import { ClipReveal } from "../Reveal";
-import { HeroDrawing } from "../HeroDrawing";
-import { Wordmark } from "../Wordmark";
+import { EASE } from "../../motion";
+import { ClipReveal, Lines } from "../Reveal";
 
 export function Hero() {
   const { t } = useLanguage();
   const reduce = useReducedMotion();
 
+  const fade = (delay: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: { delay, duration: 0.6, ease: EASE },
+  });
+
   return (
-    <>
-      <section id="top" className="relative bg-night pt-24 md:min-h-svh md:pt-28 lg:pt-16">
-        <HeroDrawing />
+    <section id="top" className="relative bg-paper pt-[calc(var(--header-h)+40px)] md:pt-[calc(var(--header-h)+64px)]">
+      <div className="wrap">
+        <div className="grid-12 items-end gap-y-12">
+          <div className="col-span-12 lg:col-span-8">
+            <ClipReveal delay={0.05}>
+              <p className="t-label flex items-center gap-3 text-mute">
+                <span className="size-1.5 bg-ink" aria-hidden="true" />
+                {t.hero.kicker}
+              </p>
+            </ClipReveal>
 
-        <div className="shell relative z-10 flex flex-col justify-end pb-12 md:min-h-[calc(100svh-7rem)] md:pb-16 lg:min-h-[calc(100svh-4rem)]">
-          <ClipReveal>
-            <p className="type-index text-gold">{t.hero.kicker}</p>
-          </ClipReveal>
-
-          <h1 className="type-hero mt-8 text-bone md:mt-10" aria-label={t.hero.title} dir="ltr">
-            <Wordmark className="block" />
-          </h1>
-
-          <div className="mt-10 grid grid-cols-1 items-end gap-10 pt-2 md:mt-14 md:grid-cols-12">
-            <div className="md:col-span-7">
-              <ClipReveal delay={0.45}>
-                <p className="type-h3 max-w-[18ch] whitespace-pre-line text-bone rtl:max-w-[24ch]">{t.hero.line}</p>
-              </ClipReveal>
-              <motion.p
-                className="type-lead mt-6 max-w-[42ch] text-fog"
-                initial={reduce ? false : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.75, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {t.hero.lead}
-              </motion.p>
-            </div>
-
-            <motion.div
-              className="flex flex-col items-start gap-6 md:col-span-5 md:items-end"
-              initial={reduce ? false : { opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Button href="#contact">{t.hero.primary}</Button>
-              <Button href="#work" variant="line">
-                {t.hero.secondary}
-              </Button>
-            </motion.div>
+            <h1 className="mt-8 md:mt-10">
+              <Lines text={t.hero.title} className="t-display block max-w-[13ch] text-ink rtl:max-w-[16ch]" delay={0.12} stagger={0.1} />
+            </h1>
           </div>
 
-          <motion.div
-            className="mt-12 flex items-center gap-4"
-            initial={reduce ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1, duration: 0.8 }}
-          >
-            <span className="type-index text-fog">{t.scroll}</span>
-            <span className="relative h-10 w-px overflow-hidden bg-line">
-              <motion.span
-                className="absolute inset-x-0 h-3 bg-gold"
-                animate={reduce ? undefined : { y: ["-100%", "240%"] }}
-                transition={{ duration: 2.2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </span>
+          <motion.div className="col-span-12 sm:col-span-6 sm:col-start-7 lg:col-span-4 lg:col-start-9" {...fade(0.5)}>
+            <div className="ms-auto aspect-[2/1] w-full max-w-[420px] overflow-hidden sm:aspect-auto sm:overflow-visible">
+              <BoxGrid className="w-full" label={t.hero.artifactLabel} />
+            </div>
           </motion.div>
         </div>
-      </section>
 
-      <Ticker items={t.hero.roles} />
-    </>
-  );
-}
+        <div className="grid-12 mt-12 items-start gap-y-8 md:mt-16">
+          <motion.p className="t-lead col-span-12 max-w-[44ch] text-graphite md:col-span-7 lg:col-span-5" {...fade(0.4)}>
+            {t.hero.lead}
+          </motion.p>
 
-function Ticker({ items }: { items: readonly string[] }) {
-  const reduce = useReducedMotion();
-  const row = [...items, ...items, ...items, ...items];
+          <motion.div
+            className="col-span-12 flex flex-col items-start gap-3 sm:flex-row sm:items-center md:col-span-5 md:justify-end lg:col-span-6 lg:col-start-7"
+            {...fade(0.5)}
+          >
+            <Button href={site.bookingUrl} ariaLabel={t.contact.bookAria} arrow className="w-full sm:w-auto">
+              {t.hero.primary}
+            </Button>
+            <Button href="#work" variant="secondary" arrow className="w-full sm:w-auto">
+              {t.hero.secondary}
+            </Button>
+          </motion.div>
+        </div>
 
-  return (
-    <div className="overflow-hidden border-y border-line bg-night" aria-hidden="true">
-      <div className={`flex w-max items-center gap-10 py-3.5 ${reduce ? "" : "marquee-track"}`}>
-        {row.map((item, i) => (
-          <span key={`${item}-${i}`} className="type-meta flex items-center gap-10 whitespace-nowrap text-fog">
-            {item}
-            <span className="text-gold">/</span>
-          </span>
-        ))}
+        <motion.div
+          className="mt-16 flex items-center justify-between gap-6 border-t border-rule pt-5 md:mt-24"
+          {...fade(0.7)}
+        >
+          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2" aria-label={t.hero.rolesLabel}>
+            {t.hero.roles.map((role) => (
+              <li key={role} className="t-label text-mute">
+                {role}
+              </li>
+            ))}
+          </ul>
+          <a href="#work" className="group t-label hidden items-center gap-2 text-mute transition-colors hover:text-ink sm:inline-flex">
+            {t.scroll}
+            <Arrow direction="down" className="transition-transform duration-300 group-hover:translate-y-0.5" />
+          </a>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

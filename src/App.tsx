@@ -4,7 +4,6 @@ import { Loader } from "./components/Loader";
 import { Navigation } from "./components/Navigation";
 import { ScrollManager } from "./components/ScrollManager";
 import { ScrollProgress } from "./components/ScrollProgress";
-import { Thread } from "./components/Thread";
 import { useLanguage } from "./context/LanguageProvider";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
@@ -14,21 +13,17 @@ function SiteLayout() {
 
   return (
     <>
-      <div className="grain" aria-hidden="true" />
       <ScrollProgress />
-      <Thread />
       <Loader />
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:start-5 focus:top-5 focus:z-[90] focus:bg-bone focus:px-4 focus:py-2 focus:text-night"
+        className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
       >
         {t.skip}
       </a>
       <Navigation />
-      <div className="site-frame">
-        <Outlet />
-        <Footer />
-      </div>
+      <Outlet />
+      <Footer />
     </>
   );
 }

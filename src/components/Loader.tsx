@@ -1,19 +1,29 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { site } from "../content/site";
+import { Wordmark } from "./Wordmark";
+
+const KEY = "artbox-loaded";
 
 export function Loader() {
   const reduce = useReducedMotion();
   const [show, setShow] = useState(() => {
     if (typeof window === "undefined") return false;
-    return !sessionStorage.getItem("artbox-loaded");
+    try {
+      return !sessionStorage.getItem(KEY);
+    } catch {
+      return false;
+    }
   });
 
   useEffect(() => {
     if (!show) return;
-    const ms = reduce ? 200 : 1400;
+    const ms = reduce ? 120 : 900;
     const id = window.setTimeout(() => {
-      sessionStorage.setItem("artbox-loaded", "1");
+      try {
+        sessionStorage.setItem(KEY, "1");
+      } catch {
+        /* ignore */
+      }
       setShow(false);
     }, ms);
     return () => window.clearTimeout(id);
@@ -23,28 +33,23 @@ export function Loader() {
     <AnimatePresence>
       {show ? (
         <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-night"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-paper"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           aria-hidden="true"
         >
-          <p className="type-logo text-bone">{site.name}</p>
-          <svg className="mt-8 h-[2px] w-40 overflow-visible" viewBox="0 0 160 2" aria-hidden="true">
-            <motion.line
-              x1="0"
-              y1="1"
-              x2="160"
-              y2="1"
-              stroke="currentColor"
-              className="text-gold"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              initial={reduce ? false : { pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            />
-          </svg>
+          <div className="flex flex-col items-center gap-6">
+            <Wordmark className="text-ink" />
+            <div className="h-px w-24 overflow-hidden bg-rule">
+              <motion.div
+                className="h-full w-full origin-left bg-ink"
+                initial={reduce ? false : { scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+          </div>
         </motion.div>
       ) : null}
     </AnimatePresence>

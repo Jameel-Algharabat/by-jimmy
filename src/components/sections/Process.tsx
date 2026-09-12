@@ -1,118 +1,56 @@
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-} from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { useRef } from "react";
 import { useLanguage } from "../../context/LanguageProvider";
 import { Reveal } from "../Reveal";
-import { Stroke } from "../Stroke";
+import { SectionHead } from "../SectionHead";
 
 export function Process() {
   const { t } = useLanguage();
-
-  return (
-    <section id="process" className="relative bg-night">
-      <div className="shell py-24 md:hidden">
-        <p className="type-index text-gold">
-          {t.process.index} — {t.process.label}
-        </p>
-        <h2 className="type-display mt-5 whitespace-pre-line rtl:max-w-[22ch]">{t.process.title}</h2>
-        <Stroke className="mt-8 h-[2px] w-20" />
-        <div className="mt-12 space-y-4">
-          {t.process.steps.map((step) => (
-            <article key={step.n} className="surface px-6 py-7">
-              <p className="type-index text-gold">{step.n}</p>
-              <h3 className="type-h3 mt-3 italic rtl:not-italic">{step.title}</h3>
-              <p className="mt-3 max-w-[32ch] text-fog">{step.body}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-
-      <DesktopProcess />
-    </section>
-  );
-}
-
-function DesktopProcess() {
-  const { t } = useLanguage();
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-  const [active, setActive] = useState(0);
-  const step = t.process.steps[active];
-
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    setActive(Math.min(3, Math.floor(v * 4)));
-  });
+  const ref = useRef<HTMLOListElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 80%", "end 60%"] });
+  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, restDelta: 0.001 });
 
   return (
-    <div ref={ref} className="hidden md:block">
-      <div className="h-[280vh]">
-        <div className="sticky top-16 flex min-h-[calc(100svh-4rem)] flex-col justify-center overflow-x-clip py-20 lg:top-0 lg:min-h-svh">
-          <div className="shell">
-            <Reveal>
-              <p className="type-index text-gold">
-                {t.process.index} — {t.process.label}
-              </p>
-              <h2 className="type-display mt-5 whitespace-pre-line rtl:max-w-[22ch]">{t.process.title}</h2>
-            </Reveal>
+    <section id="process" className="bg-paper py-24 md:py-36" aria-label={t.process.label}>
+      <div className="wrap">
+        <SectionHead index={t.process.index} label={t.process.label} title={t.process.title} />
 
-            <div className="relative mt-14 grid grid-cols-12 items-end gap-10">
-              <div className="col-span-5">
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={`${step.n}-n`}
-                    aria-hidden="true"
-                    className="font-display text-[14vw] italic leading-[0.75] tracking-[-0.08em] text-bone/10 lg:text-[12vw]"
-                    initial={reduce ? false : { y: 28, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={reduce ? undefined : { y: -20, opacity: 0 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    {step.n}
-                  </motion.p>
-                </AnimatePresence>
-              </div>
-
-              <div className="col-span-7 pb-2">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={step.n}
-                    initial={reduce ? false : { y: 18, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={reduce ? undefined : { y: -12, opacity: 0 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <div className="surface px-8 py-10 lg:px-10 lg:py-12">
-                      <p className="type-index text-gold">{step.n}</p>
-                      <h3 className="type-h2 mt-4 text-bone">{step.title}</h3>
-                      <p className="type-lead mt-6 max-w-[34ch] text-fog">{step.body}</p>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-
-            <div className="mt-16 flex gap-3">
-              {t.process.steps.map((item, i) => (
-                <span
-                  key={item.n}
-                  className={`h-px flex-1 origin-start transition-colors duration-500 ${
-                    i <= active ? "bg-gold" : "bg-line"
-                  }`}
-                />
-              ))}
-            </div>
+        <div className="relative mt-16 md:mt-24">
+          {/* Track + progress line (desktop: horizontal across the columns) */}
+          <div className="absolute inset-x-0 top-0 hidden h-px bg-rule lg:block" aria-hidden="true">
+            <motion.div
+              className="h-full w-full origin-left bg-ink rtl:origin-right"
+              style={{ scaleX: reduce ? 1 : progress }}
+            />
           </div>
+
+          <ol ref={ref} className="grid grid-cols-1 gap-x-8 lg:grid-cols-4">
+            {t.process.steps.map((step, i) => (
+              <Reveal
+                as="li"
+                key={step.n}
+                delay={i * 0.08}
+                className="relative border-t border-rule py-8 lg:border-t-0 lg:pt-10"
+              >
+                <span className="absolute -top-px start-0 hidden size-1.5 -translate-y-[2.5px] bg-ink lg:block" aria-hidden="true" />
+                <div className="grid grid-cols-[3.5rem_1fr] gap-x-4 lg:block">
+                  <p className="t-h2 t-num text-ink" aria-hidden="true">
+                    <span dir="ltr">{step.n}</span>
+                  </p>
+                  <div className="lg:mt-10">
+                    <h3 className="t-h3 text-ink">
+                      <span className="sr-only">{step.n} — </span>
+                      {step.title}
+                    </h3>
+                    <p className="t-small mt-3 max-w-[32ch] text-mute">{step.body}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

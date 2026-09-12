@@ -1,74 +1,40 @@
-import { motion, useReducedMotion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageProvider";
-import { Wordmark } from "../Wordmark";
-import { ClipReveal, Reveal } from "../Reveal";
-import { Stroke } from "../Stroke";
+import { Reveal } from "../Reveal";
+import { SectionHead } from "../SectionHead";
 
 export function About() {
   const { t } = useLanguage();
-  const reduce = useReducedMotion();
 
   return (
-    <section id="about" className="relative overflow-x-clip bg-void py-24 md:py-36">
-      <p
-        aria-hidden="true"
-        className="outline-type pointer-events-none absolute -end-[4vw] top-4 font-display text-[28vw] italic leading-none tracking-[-0.08em] md:top-0"
-        dir="ltr"
-      >
-        {t.about.name}
-      </p>
+    <section id="about" className="bg-white py-24 md:py-36" aria-label={t.about.label}>
+      <div className="wrap">
+        <SectionHead index={t.about.index} label={t.about.label} title={t.about.title} />
 
-      <svg
-        className="pointer-events-none absolute start-[-8%] bottom-[8%] h-[46%] w-[42%] text-bone/20"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <motion.path
-          d="M 8 72 C 22 40, 38 28, 54 46 S 78 86, 94 58"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.18"
-          strokeLinecap="round"
-          initial={reduce ? false : { pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-        />
-      </svg>
+        <div className="grid-12 mt-14 gap-y-8 md:mt-20">
+          <Reveal className="col-span-12 md:col-span-6 md:col-start-4 lg:col-span-4 lg:col-start-4">
+            <p className="t-lead text-graphite">{t.about.p1}</p>
+          </Reveal>
+          <Reveal delay={0.08} className="col-span-12 md:col-span-6 md:col-start-4 lg:col-span-4 lg:col-start-9">
+            <p className="t-body text-mute">{t.about.p2}</p>
+            <p className="t-body mt-5 text-mute">{t.about.p3}</p>
+          </Reveal>
+        </div>
 
-      <div className="shell relative">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-4">
-            <Reveal>
-              <p className="type-index text-gold">
-                {t.about.index} — {t.about.label}
-              </p>
-              <p className="type-meta mt-10" dir="ltr">
-                <Wordmark />
-              </p>
-              <p className="mt-3 max-w-[18ch] text-fog">{t.about.aside}</p>
-            </Reveal>
-          </div>
-
-          <div className="lg:col-span-8">
-            <ClipReveal delay={0.08}>
-              <h2 className="type-h2 max-w-[24ch] rtl:max-w-[32ch]">{t.about.title}</h2>
-            </ClipReveal>
-            <Stroke className="mt-8 h-[2px] w-28" delay={0.12} />
-
-            <div className="surface mt-10 space-y-6 px-6 py-8 text-bone/80 md:mt-14 md:px-10 md:py-12">
-              <Reveal>
-                <p>{t.about.p1}</p>
+        <div className="grid-12 mt-20 gap-y-6 md:mt-28">
+          <Reveal className="col-span-12 md:col-span-3">
+            <p className="t-label text-mute">{t.about.principlesLabel}</p>
+          </Reveal>
+          <ol className="col-span-12 md:col-span-9 lg:col-span-8">
+            {t.about.principles.map((item, i) => (
+              <Reveal as="li" key={item.n} delay={i * 0.06} className="grid-12 border-t border-rule py-6 md:py-7">
+                <p className="t-label t-num col-span-12 text-mute md:col-span-1">
+                  <span dir="ltr">{item.n}</span>
+                </p>
+                <h3 className="t-h3 col-span-12 text-ink md:col-span-5 lg:col-span-5">{item.title}</h3>
+                <p className="t-small col-span-12 max-w-[40ch] text-mute md:col-span-6">{item.body}</p>
               </Reveal>
-              <Reveal delay={0.08}>
-                <p>{t.about.p2}</p>
-              </Reveal>
-              <Reveal delay={0.14}>
-                <p>{t.about.p3}</p>
-              </Reveal>
-            </div>
-          </div>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

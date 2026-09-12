@@ -1,9 +1,10 @@
 export const site = {
   name: "ARTBOX",
   fullName: "ARTBOX.STUDY",
-  title: "ARTBOX.STUDY | Creative Technology Studio",
+  domain: "artbox.study",
+  title: "ARTBOX — Digital experiences, built with intelligence",
   description:
-    "ARTBOX is a premium creative technology studio. We design and build websites, digital experiences, and AI-powered systems — with craft, precision, and quiet confidence.",
+    "ARTBOX is a creative technology studio. We design and build websites, digital products, and AI-powered systems — strategy, design, and engineering in one studio.",
   url: "https://artbox.study",
   email: "hello@artbox.study",
   ogImage: "/og.png",
