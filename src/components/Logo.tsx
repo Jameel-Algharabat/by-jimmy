@@ -1,5 +1,5 @@
 /**
- * ARTBOX logo mark: a rounded square outline.
+ * VARON logo mark: a rounded square outline.
  * Traced from the brand artwork (outer 566, stroke 58, radius 64 → normalised to 100).
  * Uses currentColor so it inverts with the header over dark sections.
  */

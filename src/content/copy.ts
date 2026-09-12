@@ -8,9 +8,9 @@ export const copy = {
       ar: "العربية",
     },
     meta: {
-      title: "ARTBOX — Digital experiences, built with intelligence",
+      title: "VARON — Digital experiences, built with intelligence",
       description:
-        "ARTBOX is a creative technology studio. We design and build websites, digital products, and AI-powered systems — strategy, design, and engineering in one studio.",
+        "VARON is a creative technology studio. We design and build websites, digital products, and AI-powered systems — strategy, design, and engineering in one studio.",
     },
     nav: {
       work: "Work",
@@ -24,17 +24,17 @@ export const copy = {
     hero: {
       kicker: "Creative technology studio",
       title: "Digital experiences,\nbuilt with intelligence.",
-      lead: "ARTBOX designs and builds websites, digital products, and AI-powered systems for companies that take their work seriously. Strategy, design, and engineering — in one studio.",
+      lead: "VARON designs and builds websites, digital products, and AI-powered systems for companies that take their work seriously. Strategy, design, and engineering — in one studio.",
       primary: "Book a 30-minute discovery call",
       secondary: "Explore our work",
       roles: ["Strategy", "Design", "Engineering", "Intelligence"],
       rolesLabel: "Disciplines",
-      artifactLabel: "Abstract grid of squares — the ARTBOX mark in motion",
+      artifactLabel: "Abstract grid of squares — the VARON mark in motion",
     },
     intro: {
       label: "Studio",
       statement:
-        "ARTBOX combines design, engineering, and intelligent systems to create digital products that feel as good as they perform.",
+        "VARON combines design, engineering, and intelligent systems to create digital products that feel as good as they perform.",
       supporting:
         "We work directly with founders and teams. No account layer, no hand-offs — the people you meet are the people who make the work.",
     },
@@ -169,8 +169,8 @@ export const copy = {
     about: {
       index: "05",
       label: "About",
-      title: "ARTBOX exists to make digital work that holds its value.",
-      p1: "ARTBOX is a studio for digital work made with the care of a craft. We combine strategy, design, engineering, and human judgment. Intelligent tools sit inside the process — research, exploration, production — so the work is sharper, not louder.",
+      title: "VARON exists to make digital work that holds its value.",
+      p1: "VARON is a studio for digital work made with the care of a craft. We combine strategy, design, engineering, and human judgment. Intelligent tools sit inside the process — research, exploration, production — so the work is sharper, not louder.",
       p2: "The collaboration is direct. You speak with the people making the product. Decisions stay close. The work is made to represent a business — local or international — and to help people hire you or buy from you.",
       p3: "We are a lean studio. There is no account layer. If the work is ours to make, we make it. Then we stay with it — testing, refining, keeping the product exact as the business grows.",
       principlesLabel: "Principles",
@@ -220,7 +220,7 @@ export const copy = {
       title: "This page\ndoesn’t exist.",
       lead: "The page you’re looking for may have moved, or the link may be incorrect.",
       home: "Back to home",
-      documentTitle: "Page not found — ARTBOX",
+      documentTitle: "Page not found — VARON",
     },
   },
   ar: {
@@ -232,9 +232,9 @@ export const copy = {
       ar: "العربية",
     },
     meta: {
-      title: "ARTBOX — تجارب رقمية، تُبنى بذكاء",
+      title: "VARON — تجارب رقمية، تُبنى بذكاء",
       description:
-        "ARTBOX استوديو تكنولوجيا إبداعية. نصمّم ونبني المواقع الإلكترونية والمنتجات الرقمية والأنظمة المدعومة بالذكاء الاصطناعي — استراتيجية وتصميم وهندسة في استوديو واحد.",
+        "VARON استوديو تكنولوجيا إبداعية. نصمّم ونبني المواقع الإلكترونية والمنتجات الرقمية والأنظمة المدعومة بالذكاء الاصطناعي — استراتيجية وتصميم وهندسة في استوديو واحد.",
     },
     nav: {
       work: "الأعمال",
@@ -248,17 +248,17 @@ export const copy = {
     hero: {
       kicker: "استوديو تكنولوجيا إبداعية",
       title: "تجارب رقمية،\nتُبنى بذكاء.",
-      lead: "تصمّم ARTBOX وتبني المواقع الإلكترونية والمنتجات الرقمية والأنظمة المدعومة بالذكاء الاصطناعي للشركات التي تأخذ عملها بجدية. استراتيجية وتصميم وهندسة — في استوديو واحد.",
+      lead: "تصمّم VARON وتبني المواقع الإلكترونية والمنتجات الرقمية والأنظمة المدعومة بالذكاء الاصطناعي للشركات التي تأخذ عملها بجدية. استراتيجية وتصميم وهندسة — في استوديو واحد.",
       primary: "احجز مكالمة تعارف مدتها ٣٠ دقيقة",
       secondary: "استكشف أعمالنا",
       roles: ["استراتيجية", "تصميم", "هندسة", "ذكاء"],
       rolesLabel: "التخصصات",
-      artifactLabel: "شبكة مجرّدة من المربعات — علامة ARTBOX في حركة",
+      artifactLabel: "شبكة مجرّدة من المربعات — علامة VARON في حركة",
     },
     intro: {
       label: "الاستوديو",
       statement:
-        "تجمع ARTBOX بين التصميم والهندسة والأنظمة الذكية لتصنع منتجات رقمية يوازي إحساسُها أداءَها.",
+        "تجمع VARON بين التصميم والهندسة والأنظمة الذكية لتصنع منتجات رقمية يوازي إحساسُها أداءَها.",
       supporting:
         "نعمل مباشرة مع المؤسسين والفرق. لا طبقة حسابات ولا تسليمات وسيطة — من تلتقيهم هم من يصنعون العمل.",
     },
@@ -393,8 +393,8 @@ export const copy = {
     about: {
       index: "05",
       label: "عنّا",
-      title: "وُجدت ARTBOX لتصنع عملًا رقميًا يحتفظ بقيمته.",
-      p1: "ARTBOX استوديو للعمل الرقمي يُصنع بعناية الحرفة. نجمع الاستراتيجية والتصميم والهندسة والحكم البشري. وتعمل الأدوات الذكية داخل العملية — البحث والاستكشاف والإنتاج — فيكون العمل أحدّ، لا أعلى صوتًا.",
+      title: "وُجدت VARON لتصنع عملًا رقميًا يحتفظ بقيمته.",
+      p1: "VARON استوديو للعمل الرقمي يُصنع بعناية الحرفة. نجمع الاستراتيجية والتصميم والهندسة والحكم البشري. وتعمل الأدوات الذكية داخل العملية — البحث والاستكشاف والإنتاج — فيكون العمل أحدّ، لا أعلى صوتًا.",
       p2: "التعاون مباشر. تتحدث مع من يصنع المنتج. تبقى القرارات قريبة. يُصنع العمل ليمثّل نشاطًا — محليًا أو دوليًا — وليساعد الناس على اختيارك أو الشراء منك.",
       p3: "نحن استوديو رشيق. لا طبقة حسابات بينك وبين العمل. إن كان العمل لنا، ننجزه. ثم نبقى معه — نختبر ونصقل ونُبقيه دقيقًا مع نمو النشاط.",
       principlesLabel: "المبادئ",
@@ -444,7 +444,7 @@ export const copy = {
       title: "هذه الصفحة\nغير موجودة.",
       lead: "قد تكون الصفحة التي تبحث عنها قد انتقلت، أو أن الرابط غير صحيح.",
       home: "العودة إلى الصفحة الرئيسية",
-      documentTitle: "الصفحة غير موجودة — ARTBOX",
+      documentTitle: "الصفحة غير موجودة — VARON",
     },
   },
 } as const;

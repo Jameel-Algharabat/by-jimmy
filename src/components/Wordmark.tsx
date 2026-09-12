@@ -1,7 +1,7 @@
 import { site } from "../content/site";
 
 /**
- * ARTBOX wordmark. Latin, always LTR.
+ * VARON wordmark. Latin, always LTR.
  * A single square before the name references the "box" — restrained, 2D.
  */
 export function Wordmark({ className = "", mark = true }: { className?: string; mark?: boolean }) {

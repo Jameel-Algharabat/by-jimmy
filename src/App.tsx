@@ -1,4 +1,6 @@
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { BrowserRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Footer } from "./components/Footer";
 import { Loader } from "./components/Loader";
 import { Navigation } from "./components/Navigation";
@@ -39,6 +41,17 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      <VercelObservability />
     </BrowserRouter>
+  );
+}
+
+function VercelObservability() {
+  const { pathname } = useLocation();
+  return (
+    <>
+      <Analytics path={pathname} route={pathname} />
+      <SpeedInsights route={pathname} />
+    </>
   );
 }
