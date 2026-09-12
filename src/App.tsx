@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Footer } from "./components/Footer";
 import { Loader } from "./components/Loader";
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      <Analytics />
     </BrowserRouter>
   );
 }
