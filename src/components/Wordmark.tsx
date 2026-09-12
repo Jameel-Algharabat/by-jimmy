@@ -1,13 +1,14 @@
 import { site } from "../content/site";
+import { Logo } from "./Logo";
 
 /**
  * VARON wordmark. Latin, always LTR.
- * A single square before the name references the "box" — restrained, 2D.
+ * The brand mark sits at cap-height before the name.
  */
 export function Wordmark({ className = "", mark = true }: { className?: string; mark?: boolean }) {
   return (
     <span className={`inline-flex items-center gap-2 whitespace-nowrap ${className}`} dir="ltr" aria-label={site.name}>
-      {mark ? <span className="size-[0.55em] shrink-0 bg-current" aria-hidden="true" /> : null}
+      {mark ? <Logo className="size-[1em]" /> : null}
       <span className="t-logo">{site.name}</span>
     </span>
   );

@@ -127,31 +127,36 @@ export function Navigation() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,color,backdrop-filter] duration-300 ${headerSurface}`}
       >
-        <div className="wrap flex h-[var(--header-h)] items-center justify-between gap-6">
+        <div className="wrap relative flex h-[var(--header-h)] items-center justify-between gap-6">
           <Link
             to="/"
-            className={`${fg} -ms-1 flex items-center p-1 transition-opacity duration-200 hover:opacity-70`}
+            className={`${fg} relative z-10 -ms-1 flex items-center p-1 transition-opacity duration-200 hover:opacity-70`}
             onClick={() => setOpen(false)}
             aria-label={site.name}
           >
             <Logo className="size-7 md:size-8" />
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex" aria-label={t.footer.navLabel}>
-            {links.map((link) => (
-              <NavAnchor
-                key={link.id}
-                id={link.id}
-                pathname={pathname}
-                className={`t-nav u-line transition-colors duration-200 ${isActive(link.id) ? fg : navOff}`}
-                dataActive={isActive(link.id)}
-              >
-                {link.label}
-              </NavAnchor>
-            ))}
+          <nav
+            className="pointer-events-none absolute inset-x-0 hidden justify-center lg:flex"
+            aria-label={t.footer.navLabel}
+          >
+            <div className="pointer-events-auto flex items-center gap-8">
+              {links.map((link) => (
+                <NavAnchor
+                  key={link.id}
+                  id={link.id}
+                  pathname={pathname}
+                  className={`t-nav u-line transition-colors duration-200 ${isActive(link.id) ? fg : navOff}`}
+                  dataActive={isActive(link.id)}
+                >
+                  {link.label}
+                </NavAnchor>
+              ))}
+            </div>
           </nav>
 
-          <div className="flex items-center gap-5 lg:gap-7">
+          <div className="relative z-10 flex items-center gap-5 lg:gap-7">
             <LanguageSwitch inverse={onDark} />
             <button
               type="button"
